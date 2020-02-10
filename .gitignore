@@ -1,1 +1,2 @@
-Rust
+/Rust/*/target
+/Rust/*/Cargo.lock
