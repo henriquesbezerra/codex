@@ -1,5 +1,17 @@
 extern crate time;
 
+// Enum type
+enum Gender{
+    Female,
+    Male,
+    Other
+}
+
+// Struct type
+struct Person{
+    name: &'static str,
+    gender: Gender
+}
 
 // function usign return
 fn sum_1( a:i32, b:i32 ) -> i32{
@@ -20,6 +32,43 @@ fn hello(){
 fn do_sum(function: fn()){
     function()
 }
+
+// this is a modules declaration with simple functions
+mod calculator{
+
+    //private function
+    fn is_zero(number: i32) -> bool{
+        if number == 0 { return true};
+        false
+    }
+
+    //public function
+    pub fn add( a: i32, b: i32) -> i32 {
+        a + b
+    }
+
+    //public function
+    pub fn subtract( a: i32, b: i32) -> i32 {
+        a - b
+    }
+
+    //public function
+    pub fn multiple( a: i32, b: i32) -> i32 {
+        a * b
+    }
+
+    //public function
+    pub fn divide( a: i32, b: i32) -> i32 {
+        if is_zero(b) { return 0; }
+        a / b        
+    }
+}
+
+// we can use alias to modules functions see
+use calculator::add as add;
+use calculator::subtract as subtract;
+use calculator::multiple as multiple;
+use calculator::divide as divide;
 
 
 fn main(){
@@ -247,7 +296,59 @@ fn main(){
     println!("piece_b = {:?}", piece_b);
 
 
-    // array iteration with iter() method
+    // array iteration with iter() method makes it possible iterate one by one item in array, see:
+    let array_to_iter = ['a','b','c','d','e'];
+    for item in array_to_iter.iter(){
+        println!("{}",item);
+    }
     
+    // Type Tuples, this type is a list of independent values, used as key , value , but in Rust we can hav more value in a tuple
+
+    let tuple = ('a',10,3.5);
+    
+    //we can access this values in tuples with element index
+    println!("{}, {}, {}", tuple.0, tuple.1, tuple.2);
+
+    //Or access with destructive let
+    let (a0, a1, a2) = tuple;
+
+    println!("{}, {}, {}", a0, a1, a2);
+
+    // we can put tuples in array, but tuple required has same format, if some value is differ, error mismatched types occurs
+    let tuple_1 = ('a',10);
+    let tuple_2 = ('b',20);
+    let tuple_3 = ('c',30);
+
+    let array_of_tuples = [tuple_1, tuple_2, tuple_3];
+
+    println!("array_of_tuples = {:?}", array_of_tuples); // obs.: this is cool
+
+
+    // Enuns, this a type useful to create list of organized constant values, and access of your elements is do with :: expression,
+    // this type needs declare out of main fn, see example in top file called Gender
+
+    // see a struct using a enum type
+    let person_1 = Person {
+        name: "Henrique",
+        gender: Gender::Male
+    };
+   
+//    println!("{}, has gender: ", person_1.name, person_1.gender);
+
+    // Rust provides a away to orginize our code in modules, inner modules we cant set private and public methods
+    // whem we want a public method is just needed set pub prefix in functions, mods are declared out of fn main
+    // see in top file, mod called calculator
+
+    let mod_a = 10;
+    let mod_b = 4;
+
+    println!("{} + {} = {}",mod_a, mod_b, add(10,4));
+    println!("{} - {} = {}",mod_a, mod_b, subtract(10,4));
+    println!("{} * {} = {}",mod_a, mod_b, multiple(10,4));
+    println!("{} / {} = {}",mod_a, mod_b, divide(10,4));
+
+
+
+
 
 }
