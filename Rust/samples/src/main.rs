@@ -172,8 +172,8 @@ fn main(){
     // in systems or comunication protocols thats no support unicode
 
     let unicode1: char = '→';
-    let unicode1Str: String = unicode1.escape_unicode().collect();
-    println!("\n unicode to String, escape_unicode(); {}",unicode1Str);
+    let unicode1_str: String = unicode1.escape_unicode().collect();
+    println!("\n unicode to String, escape_unicode(); {}",unicode1_str);
 
 
     // is_alphabetic, check if a char belong to some alphabet
@@ -347,6 +347,63 @@ fn main(){
     println!("{} * {} = {}",mod_a, mod_b, multiple(10,4));
     println!("{} / {} = {}",mod_a, mod_b, divide(10,4));
 
+
+    // Conditional Controll with IF..ELSE,
+    // we can test expression em redirect de program execution flow depending on the results
+
+    if( 10 < 5 ){
+        println!("10 is Smaller than 5!");
+    }else{
+        println!("10 is Bigger than 5!");
+    }
+
+
+    // we can use if without parentheses to, because parentheses is optional
+
+    if  'a' == 'a' {
+        println!("'a' == 'a' ? These chars is equal!");
+    }
+
+    // The result of if can be assign to a variable 
+
+    let result_if = if 'b'.is_alphanumeric() { 
+        "Is alphanumeric"
+    } else { 
+        "Other" 
+    };
+
+    println!("result_if = {}",result_if);
+
+    
+    // MATCH ! the powerfull alternative to avoid several IF..ELSE chained
+    // if match we can search a for pattern (pattern matching) inside verification block and return one action, value if matchs!!
+
+
+    // A Little more about pattern matching::
+    /*
+        Pattern matching is write code thats receive a value, search amoung various options which answer the pattern,
+        this pattern can be a Numerical value, a String or a interval thats reported value fits.
+
+        Pattern matching is main reasons for adopting several recently languages thats use functional paradigm, 
+        because enables a power to data analysis in complex structures in simple and concise way.
+
+        Haskell, Scala, Elixir and OCaml are using this type of pattern matching
+    */
+
+
+    // Exemple searchin a value in a options with inclusive ranges
+
+    let grade_value: f32 = 0.9;
+    let my_grade =  match grade_value {
+        0.0...4.0 => "Below middle",
+        4.1...8.9 => "In Middle",
+        9.0...10.0 => "Upper Middle",
+        _ => "So Crazy"
+    };
+
+    println!("my_grade is = {}", my_grade);
+
+    
 
 
 
