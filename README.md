@@ -9,3 +9,4 @@ Programming Languages
 ---------------------------------
 
 * [Rust](https://github.com/henriquesbezerra/codex/tree/master/Rust)
+* [Typescript](https://www.typescriptlang.org/)

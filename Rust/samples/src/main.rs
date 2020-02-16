@@ -391,7 +391,7 @@ fn main(){
     */
 
 
-    // Exemple searchin a value in a options with inclusive ranges
+    // Example searching a value in a options with inclusive ranges
 
     let grade_value: f32 = 0.9;
     let my_grade =  match grade_value {
@@ -403,8 +403,20 @@ fn main(){
 
     println!("my_grade is = {}", my_grade);
 
-    
+    // Example match using multiple values for one pattern
+    let letter =  'a';
+    match letter{
+        'a' | 'e' | 'i' | 'o' | 'u' => println!("Letter is a vogal in lowercase"),
+        'A' | 'E' | 'I' | 'I' | 'U' => println!("Letter is a vogal in upercase"),
+        _ => println!("Letter not is a vogal"),   
+    }
 
+    /**
+    *   # Compilation directives
+    *    are instructions which let in ou code to define when something is execute or not.
+
+        allow directive -> indicates that the compile allows something that would generally be a warming
+    */
 
 
 
