@@ -1,6 +1,7 @@
 extern crate time;
 
 // Enum type
+#[allow(dead_code)]
 enum Gender{
     Female,
     Male,
@@ -8,6 +9,7 @@ enum Gender{
 }
 
 // Struct type
+#[allow(dead_code)]
 struct Person{
     name: &'static str,
     gender: Gender
@@ -328,12 +330,13 @@ fn main(){
     // this type needs declare out of main fn, see example in top file called Gender
 
     // see a struct using a enum type
-    let person_1 = Person {
+    #[allow(dead_code)]
+    let _person_1 = Person {
         name: "Henrique",
         gender: Gender::Male
     };
    
-//    println!("{}, has gender: ", person_1.name, person_1.gender);
+//    println!("{}, has gender: ", _person_1.name, _person_1.gender);
 
     // Rust provides a away to orginize our code in modules, inner modules we cant set private and public methods
     // whem we want a public method is just needed set pub prefix in functions, mods are declared out of fn main
@@ -351,7 +354,7 @@ fn main(){
     // Conditional Controll with IF..ELSE,
     // we can test expression em redirect de program execution flow depending on the results
 
-    if( 10 < 5 ){
+    if  10 < 5 {
         println!("10 is Smaller than 5!");
     }else{
         println!("10 is Bigger than 5!");
@@ -393,11 +396,11 @@ fn main(){
 
     // Example searching a value in a options with inclusive ranges
 
-    let grade_value: f32 = 0.9;
+    let grade_value: i32 = 9;
     let my_grade =  match grade_value {
-        0.0...4.0 => "Below middle",
-        4.1...8.9 => "In Middle",
-        9.0...10.0 => "Upper Middle",
+        0..=4 => "Below middle",
+        5..=8 => "In Middle",
+        9..=10 => "Upper Middle",
         _ => "So Crazy"
     };
 
@@ -407,17 +410,76 @@ fn main(){
     let letter =  'a';
     match letter{
         'a' | 'e' | 'i' | 'o' | 'u' => println!("Letter is a vogal in lowercase"),
-        'A' | 'E' | 'I' | 'I' | 'U' => println!("Letter is a vogal in upercase"),
+        'A' | 'E' | 'I' | 'O' | 'U' => println!("Letter is a vogal in upercase"),
         _ => println!("Letter not is a vogal"),   
     }
 
-    /**
-    *   # Compilation directives
-    *    are instructions which let in ou code to define when something is execute or not.
+    
+    //   # Compilation directives
+    //    are instructions which let in ou code to define when something is execute or not.
+    //    allow directive -> indicates that the compile allows something that would generally be a warming
+    
 
-        allow directive -> indicates that the compile allows something that would generally be a warming
-    */
+    // Match and Enums
+
+    let _gender = Gender::Male;
+    match _gender{
+        Gender::Male => println!("Male"),
+        Gender::Female => println!("Female"),
+        _ => println!("Other"),
+    }
+
+    // Match and Tuples
+
+    #[allow(unused_variables)] // this directive says that no problem with have some variable thats not used
+    // other way to do same declaration is use _ (underscore) before a variable
+    fn find_zero(t: (i32, i32)) -> (){
+        match t{
+            (x, 0) => println!("Second is zero"),
+            (0, x) => println!("First is zero"),
+            _ => println!("no zeroes"),
+        }
+    }
+
+    find_zero((0,4));
+
+    // Vincuation with match -> way to use a function has parameter to match
+
+    // creating a function to checkout one char is vowel or consoant
+    fn is_vowel_or_consoant(c: char) -> char {
+        match c {
+            'a' | 'e' | 'i' | 'o' | 'u' => 'v',
+            'A' | 'E' | 'I' | 'O' | 'U' => 'v',
+            _ => 'c',
+        }
+    }
+
+    
+    let check_name: &'static str = "Henrique"; // name to check
+    let mut vowel_count = 0; // counter for vowels
+    let mut consoant_count = 0; // counter for consoants
+    
+    // for to check chars
+    for a in check_name.chars() {
+        match is_vowel_or_consoant(a){
+            'v' => vowel_count += 1,
+            'c' => consoant_count +=1,
+            _ => ()
+        }
+    }
+    // results
+    println!("{} has {} Vowel(s) and {} consoant(s)",check_name, vowel_count, consoant_count);
+
+    // now we go vinculate our match with a return of method is_vowel_or_consoant usign signal @,
+    // in this case the result of method are put in variabel
 
 
+    for a in check_name.chars() {
+        match is_vowel_or_consoant(a){
+            r @ 'v' => println!("{}", r), // variable r is vinculated with return of methodo used by match, in this case is_vowel_or_consoant
+            r @ 'c' => println!("{}", r),
+            _ => ()
+        }
+    }
 
-}
+}   
