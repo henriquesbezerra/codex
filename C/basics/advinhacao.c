@@ -30,9 +30,19 @@ int main()
     // na váriavel que criamos previamente.
     scanf("%d", &input);
 
+    // IF comando condicional, faz uma comparação e se verdadeiro
+    // executa o primeiro bloco, se não executa o segundo
+    if(input != secret_number)
+    {
+      // Primeiro bloco
+      printf("\nSeu chute foi: %d, Tente novamente...\n", input);
+    
+    }else{ // ELSE significa algo como 'Se não'
+      // Segundo bloco
+      printf("\nParabéns! Você  acertou, o número secreto era: %d", secret_number);
+    }
   }
   
-  printf("\nParabéns! Você  acertou, o número secreto era: %d", secret_number);
 
   printf("\n\n");
 
