@@ -24,14 +24,14 @@ int main()
 
   // comando while, é um laço de repetição
   // uma ação que ira se repetir enquanto determinada condição correr
-  int max = 1;
-  while(input != secret_number && max <= NUMERO_TENTATIVAS ){
+  int tentativas = 1;
+  while(input != secret_number){
     
-    if(max > 1){
+    if(tentativas > 1){
       printf("\nTente novamente...");
     }
 
-    printf("\nTentativa %d de %d", max, NUMERO_TENTATIVAS);
+    printf("\nTentativa %d ", tentativas);
     // mensagem de orientação ao usuário digitar um número
     printf("\nDigite um número: ");
 
@@ -63,11 +63,11 @@ int main()
 
     }else{ // ELSE significa algo como 'Se não'
       // Terceiro bloco
-      printf("\nParabéns! Você  acertou, o número secreto era: %d", secret_number);
+      printf("\nParabéns! Você  acertou, na %dº tentativa! \no número secreto era: %d\n", tentativas, secret_number);
     }
 
     // Incrementa o contato que limita as tentativas
-    max++;  
+    tentativas++;  
   }  
 
   printf("\n***************\n");
