@@ -1,6 +1,9 @@
 // Import de bibliteca padrão de entrada e saida.
 #include <stdio.h>
 
+// Diretiva ou constante
+#define NUMERO_TENTATIVAS 5
+
 // função principal de um programa C
 int main()
 {
@@ -22,13 +25,13 @@ int main()
   // comando while, é um laço de repetição
   // uma ação que ira se repetir enquanto determinada condição correr
   int max = 1;
-  while(input != secret_number && max < 4 ){
+  while(input != secret_number && max <= NUMERO_TENTATIVAS ){
     
     if(max > 1){
       printf("\nTente novamente...");
     }
 
-    printf("\nTentativa %d de 3",max);
+    printf("\nTentativa %d de %d", max, NUMERO_TENTATIVAS);
     // mensagem de orientação ao usuário digitar um número
     printf("\nDigite um número: ");
 
