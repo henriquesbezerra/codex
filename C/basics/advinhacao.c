@@ -21,8 +21,14 @@ int main()
 
   // comando while, é um laço de repetição
   // uma ação que ira se repetir enquanto determinada condição correr
-  while(input != secret_number){
+  int max = 1;
+  while(input != secret_number && max < 4 ){
+    
+    if(max > 1){
+      printf("\nTente novamente...");
+    }
 
+    printf("\nTentativa %d de 3",max);
     // mensagem de orientação ao usuário digitar um número
     printf("\nDigite um número: ");
 
@@ -32,19 +38,32 @@ int main()
 
     // IF comando condicional, faz uma comparação e se verdadeiro
     // executa o primeiro bloco, se não executa o segundo
-    if(input != secret_number)
+    int acerto = input < secret_number; // consegui fazer comparação na atribuição de uma variavel
+    // e testar se seu valor é verdadeiro o falso
+    // 1 -> verdadeiro
+    // 0 -> falso
+    if(acerto)
     {
       // Primeiro bloco
-      printf("\nSeu chute foi: %d, Tente novamente...\n", input);
+      printf("\nSeu chute foi MENOR que o número secreto: %d\n", input);
     
-    }else{ // ELSE significa algo como 'Se não'
+    }else if(input > secret_number)
+    {
       // Segundo bloco
+      printf("\nSeu chute foi MAIOR que o número secreto: %d\n", input);  
+
+    }else{ // ELSE significa algo como 'Se não'
+      // Terceiro bloco
       printf("\nParabéns! Você  acertou, o número secreto era: %d", secret_number);
     }
-  }
-  
 
-  printf("\n\n");
+    // Incrementa o contato que limita as tentativas
+    max++;  
+  }  
+
+  printf("\n***************\n");
+  printf("* FIM DE JOGO *\n");
+  printf("***************\n\n");
 
   return 0;
 }
