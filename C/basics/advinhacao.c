@@ -39,6 +39,12 @@ int main()
     // na váriavel que criamos previamente.
     scanf("%d", &input);
 
+    // Evitando número negativos
+    if(input < 0) {
+      printf("\nNão é permitido número negativos!\n");     
+      continue;
+    }
+
     // IF comando condicional, faz uma comparação e se verdadeiro
     // executa o primeiro bloco, se não executa o segundo
     int acerto = input < secret_number; // consegui fazer comparação na atribuição de uma variavel
