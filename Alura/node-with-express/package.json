@@ -1,0 +1,9 @@
+{
+  "name": "node-with-express",
+  "version": "1.0.0",
+  "description": "A project to study simple api with node and express",
+  "main": "index.js",
+  "author": "Henrique Silva",
+  "license": "MIT",
+  "private": true
+}
