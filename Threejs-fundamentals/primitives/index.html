@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeJs Primeiro teste</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #c {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+
+    <script type="module">
+        import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+
+        function main() {
+            const canvas = document.querySelector("#c");
+            const renderer = new THREE.WebGLRenderer({ canvas });
+
+            // Field of View
+            const fov = 40;
+            // The canvas default
+            const aspect = 2;
+            const near = 0.1;
+            const far = 1000;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.z = 120;
+
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xAAAAAA);
+
+            {
+                const color = 0xFFFFFF;
+                const intensity = 1;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(-1, 2, 4);
+                scene.add(light);
+            }
+            {
+                const color = 0xFFFFFF;
+                const intensity = 1;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(-1, 2, -4);
+                scene.add(light);
+            }
+
+            const objects = [];
+            const spread = 15;
+
+            function addObject(x, y, obj) {
+                obj.position.x = x * spread;
+                obj.position.y = y * spread;
+
+                scene.add(obj);
+                objects.push(obj);
+            }
+
+            function createMaterial() {
+                const material = new THREE.MeshPhongMaterial({
+                    side: THREE.DoubleSide,
+                });
+
+                const hue = Math.random();
+                const saturation = 1;
+                const luminance = .5;
+                material.color.setHSL(hue, saturation, luminance);
+
+                return material;
+            }
+
+            function addSolidGeometry(x, y, geometry) {
+                const mesh = new THREE.Mesh(geometry, createMaterial());
+                addObject(x, y, mesh);
+            }
+
+            // CUBE
+            {
+                const width = 8;
+                const height = 8;
+                const depth = 8;
+                addSolidGeometry(-2, 2, new THREE.BoxGeometry(width, height, depth));
+            }
+
+            // CUBE With Segments
+            {
+                const width = 8;
+                const height = 8;
+                const depth = 8;
+                const widthSegments = 8;
+                const heightSegments = 8;
+                const depthSegments = 8;
+                addSolidGeometry(-1, 2, new THREE.BoxGeometry(
+                    width, height, depth,
+                    widthSegments, heightSegments, depthSegments
+                ));
+            }
+
+            // CIRCLE
+            {
+                const radius = 5.4;
+                const segments = 20;
+                addSolidGeometry(0, 2, new THREE.CircleGeometry(radius, segments));
+            }
+
+            // CIRCLE With Theta
+            {
+                const radius = 5.4;
+                const segments = 20;
+                const thetaStart = Math.PI * 0.25;
+                const thetaLenght = Math.PI * 1.5;
+                addSolidGeometry(1, 2, new THREE.CircleGeometry(radius, segments, thetaStart, thetaLenght));
+            }
+
+            // CONE
+            {
+                const radius = 6;
+                const height = 8;
+                const radialSegments = 20;
+                addSolidGeometry(2, 2, new THREE.ConeGeometry(radius, height, radialSegments));
+            }
+
+            // CONE With Theta
+            {
+                const radius = 6;
+                const height = 8;
+                const radialSegments = 20;
+                const heightSegments = 2;
+                const openEnded = true;
+                const thetaStart = Math.PI * 0.25;
+                const thetaLength = Math.PI * 1.5;
+                addSolidGeometry(-2, 1, new THREE.ConeGeometry(
+                    radius, height,
+                    radialSegments, heightSegments,
+                    openEnded,
+                    thetaStart, thetaLength
+                ));
+            }
+
+            // CylinderGeometry
+            {
+                const radiusTop = 1.6;
+                const radiusBottom = 7.6;
+                const height = 8;
+                const radialSegments = 12;
+                addSolidGeometry(-1, 1, new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments));
+            }
+
+            // CylinderGeometry With Theta
+            {
+                const radiusTop = 1.6;
+                const radiusBottom = 5.6;
+                const height = 8;
+                const radialSegments = 12;
+                const heightSegments = 2;
+                const openEnded = false;
+                const thetaStart = Math.PI * 0.25;
+                const thetaLenght = Math.PI * 1.5;
+                addSolidGeometry(0, 1, new THREE.CylinderGeometry(
+                    radiusTop, radiusBottom,
+                    height, radialSegments, heightSegments,
+                    openEnded,
+                    thetaStart, thetaLenght
+                ));
+            }
+
+            // DodecahedronGeometry 12 sides
+            {
+                const radius = 3.2;
+                addSolidGeometry(1, 1, new THREE.DodecahedronGeometry(radius));
+            }
+
+            // DodecahedronGeometry 12 sides detailed
+            {
+                const radius = 4.2;
+                const detail = 1;
+                addSolidGeometry(2, 1, new THREE.DodecahedronGeometry(radius, detail));
+            }
+
+            // ExtrudeGeometry
+            // an extrude 2d shape with optional bevelling. Here we are extruding a heart shape.
+            // Note this is the bases for TextGeometry
+            {
+                const shape = new THREE.Shape();
+                const x = -2.5;
+                const y = -5;
+                shape.moveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+                shape.bezierCurveTo(x + 2.5, y + 2.5, x + 2, y, x, y);
+                shape.bezierCurveTo(x - 3, y, x - 3, y + 3.5, x - 3, y + 3.5);
+                shape.bezierCurveTo(x - 3, y + 5.5, x - 1.5, y + 7.7, x + 2.5, y + 9.5);
+                shape.bezierCurveTo(x + 6, y + 7.7, x + 8, y + 4.5, x + 8, y + 3.5);
+                shape.bezierCurveTo(x + 8, y + 3.5, x + 8, y, x + 5, y);
+                shape.bezierCurveTo(x + 3.5, y, x + 2.5, y + 2.5, x + 2.5, y + 2.5);
+
+                const extrudeSetting = {
+                    step: 2,
+                    depth: 1.0,
+                    bevelEnabled: true,
+                    bevelThickness: 0.40,
+                    bevelSize: 0.60,
+                    bevelSegments: 8,
+                };
+                addSolidGeometry(-2, 0, new THREE.ExtrudeGeometry(shape, extrudeSetting));
+            }
+
+            function resizeRendererToDisplaySize(renderer) {
+                const canvas = renderer.domElement;
+                const pixelRatio = window.devicePixelRatio;
+                const width = canvas.clientWidth * pixelRatio | 0;
+                const height = canvas.clientHeight * pixelRatio | 0;
+                const needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
+            }
+
+
+            function render(time) {
+                time *= 0.001;  // convert time to seconds
+
+                // Config camera to adjust aspect based on window size
+                if (resizeRendererToDisplaySize(renderer)) {
+                    const canvas = renderer.domElement;
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+
+                objects.forEach((obj, ndx) => {
+                    const speed = 0.4 + ndx * .1;
+                    const rot = time * speed;
+                    obj.rotation.x = rot;
+                    obj.rotation.y = rot;
+                });
+
+                renderer.render(scene, camera);
+
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+
+        }
+
+
+
+        main();
+
+    </script>
+
+</body>
+
+</html>
