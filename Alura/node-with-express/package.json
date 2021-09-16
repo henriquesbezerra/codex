@@ -6,11 +6,18 @@
   "author": "Henrique Silva",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "nodemon --watch src src/index.js"
+  },
   "repository": {
-    "url": "https://github.com/henriquesbezerra/codex ",
+    "url": "https://github.com/henriquesbezerra/codex",
     "directory": "/Alura/node-with-express"
   },
   "dependencies": {
+    "consign": "^0.1.6",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
   }
 }
