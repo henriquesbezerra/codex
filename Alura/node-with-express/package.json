@@ -5,5 +5,12 @@
   "main": "index.js",
   "author": "Henrique Silva",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "repository": {
+    "url": "https://github.com/henriquesbezerra/codex ",
+    "directory": "/Alura/node-with-express"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
