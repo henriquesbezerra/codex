@@ -2,6 +2,8 @@
 // Importamos o módulo express
 const express = require('express');
 
+const antedimentos = require('./controllers/atendimentos');
+
 // Criamos uma 'instância' do express na contante app
 const app = express();
 
