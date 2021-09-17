@@ -4,7 +4,19 @@
  */
 
 module.exports = app => {
+
+  // Rota Get para pegar informações
   app.get('/atendimentos', (req, res) => {
+    return res.send('Rota de atendimentos');
+  });
+
+  // Rota Post receberemos dados das requisição
+  app.post('/atendimentos', (req, res) => {
+
+    const body = req.body;
+
+    console.log('=>', req.body);
+
     return res.send('Rota de atendimentos');
   });
 }
