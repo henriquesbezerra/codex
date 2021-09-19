@@ -3,6 +3,10 @@
  * e definir as rotas e ações para atendimentos
  */
 
+
+const AtendimentosModel = require('../models/atendimentos');
+
+
 module.exports = app => {
 
   // Rota Get para pegar informações
@@ -14,6 +18,8 @@ module.exports = app => {
   app.post('/atendimentos', (req, res) => {
 
     const body = req.body;
+
+    AtendimentosModel.add(body);
 
     console.log('=>', req.body);
 
