@@ -7,7 +7,7 @@ class Atendimentos {
    * método para criar um novo
    * atendimento no banco de dados
    */
-  add(data) {
+  add(data, res) {
 
     const { data_agendamento } = data;
 
@@ -23,9 +23,9 @@ class Atendimentos {
 
     con.query(sql, atendimentoAgendamento, (e, results) => {
       if (e) {
-        console.log(e);
+        res.status(400).json(e);
       } else {
-        console.log(results);
+        res.status(201).json(results);
       }
     });
   }

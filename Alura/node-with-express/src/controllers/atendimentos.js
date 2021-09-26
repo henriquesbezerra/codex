@@ -19,10 +19,10 @@ module.exports = app => {
 
     const body = req.body;
 
-    AtendimentosModel.add(body);
+    AtendimentosModel.add(body, res);
 
     console.log('=>', req.body);
 
-    return res.send('Rota de atendimentos');
+    //return res.send('Rota de atendimentos');
   });
 }
