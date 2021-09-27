@@ -68,9 +68,29 @@ class Atendimentos {
   }
 
   busca(id, res) {
+
     const sql = `SELECT * FROM atendimentos where id = ${id}`;
 
     con.query(sql, (e, results) => {
+      if (e) {
+        res.status(400).json(e);
+      } else {
+        res.status(200).json(results[0]);
+      }
+    });
+  }
+
+  altera(id, data, res) {
+
+    if (data.data_agendamento) {
+      data.data_agendamento = parseISO(data.data_agendamento);
+    }
+
+    const sql = `
+      UPDATE atendimentos SET ? WHERE id = ?
+    `;
+
+    con.query(sql, [data, id], (e, results) => {
       if (e) {
         res.status(400).json(e);
       } else {
