@@ -11,8 +11,14 @@ module.exports = app => {
 
   // Rota Get para pegar informações
   app.get('/atendimentos', (req, res) => {
-    return res.send('Rota de atendimentos');
+    AtendimentosModel.lista(res);
   });
+
+  app.get('/atendimentos/:id', (req, res) => {
+    const { id } = req.params;
+    AtendimentosModel.busca(parseInt(id), res);
+  });
+
 
   // Rota Post receberemos dados das requisição
   app.post('/atendimentos', (req, res) => {
@@ -21,7 +27,7 @@ module.exports = app => {
 
     AtendimentosModel.add(body, res);
 
-    console.log('=>', req.body);
+    //console.log('=>', req.body);
 
     //return res.send('Rota de atendimentos');
   });
