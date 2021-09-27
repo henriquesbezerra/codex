@@ -94,7 +94,7 @@ class Atendimentos {
       if (e) {
         res.status(400).json(e);
       } else {
-        res.status(200).json(results[0]);
+        res.status(200).json({ id, ...data });
       }
     });
   }
@@ -109,7 +109,7 @@ class Atendimentos {
       if (e) {
         res.status(400).json(e);
       } else {
-        res.status(200).json(results[0]);
+        res.status(200).json({ 'deleted': id });
       }
     });
   }
