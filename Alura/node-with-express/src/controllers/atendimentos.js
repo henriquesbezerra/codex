@@ -37,6 +37,13 @@ module.exports = app => {
     const body = req.body;
     const { id } = req.params;
     AtendimentosModel.altera(parseInt(id), body, res);
-
   });
+
+  // Rota Delete para apagar um atendimento
+  app.delete('/atendimentos/:id', (req, res) => {
+    const body = req.body;
+    const { id } = req.params;
+    AtendimentosModel.apaga(parseInt(id), res);
+  });
+
 }

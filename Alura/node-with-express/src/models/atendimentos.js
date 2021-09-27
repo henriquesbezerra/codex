@@ -98,6 +98,21 @@ class Atendimentos {
       }
     });
   }
+
+  apaga(id, res) {
+
+    const sql = `
+      DELETE FROM atendimentos WHERE id = ?
+    `;
+
+    con.query(sql, id, (e, results) => {
+      if (e) {
+        res.status(400).json(e);
+      } else {
+        res.status(200).json(results[0]);
+      }
+    });
+  }
 }
 
 module.exports = new Atendimentos;
