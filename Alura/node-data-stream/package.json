@@ -1,0 +1,25 @@
+{
+  "name": "node-data-strean",
+  "version": "1.0.0",
+  "description": "A project to study simple data stream using node",
+  "main": "index.js",
+  "author": "Henrique Silva",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --watch src src/index.js"
+  },
+  "repository": {
+    "url": "https://github.com/henriquesbezerra/codex",
+    "directory": "/Alura/node-with-express"
+  },
+  "dependencies": {
+    "consign": "^0.1.6",
+    "date-fns": "^2.24.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
