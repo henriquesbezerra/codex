@@ -15,7 +15,7 @@ const consign = require('consign');
 // Exportamos a inicialização como uma função para utilizarmos em outro lugar
 module.exports = () => {
 
-  // Criamos uma 'instância' do express na contante app
+  // Criamos uma 'instância' do express na constante app
   const app = express();
 
   // Adicionamos o módulo json ao nosso app
