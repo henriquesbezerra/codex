@@ -7,17 +7,22 @@ class Pet{
 
     const sql = 'INSERT INTO pets SET ?';
 
-    uploadArquivoStream(data.imagem, data.nome, (novoCaminho) =>{
+    uploadArquivoStream(data.imagem, data.nome, (novoCaminho, error) =>{
 
-      const novoPet = { nome: data.nome, imagem: novoCaminho };
+      if(error){
+        console.log(error);
+        res.status(400).json(error.msg);
+      }else{
+        const novoPet = { nome: data.nome, imagem: novoCaminho };
 
-      con.query(sql, novoPet , (e, results) => {
-        if (e) {
-          res.status(400).json(e);
-        } else {
-          res.status(201).json(novoPet);
-        }
-      });
+        con.query(sql, novoPet , (e, results) => {
+          if (e) {
+            res.status(400).json(e);
+          } else {
+            res.status(201).json(novoPet);
+          }
+        });
+      }
     });
 
   }

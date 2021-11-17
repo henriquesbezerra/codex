@@ -1,12 +1,21 @@
 const fs = require('fs');
+const path = require('path');
 
-module.exports = (path, fileName, callback) => {
-  const novoCaminho = `./assets/imagens/${fileName}.jpg`;
+module.exports = (caminho, fileName, callback) => {
 
-  console.log(path,novoCaminho);
+  console.log(caminho);
 
-  fs.createReadStream(path)
-  .pipe(fs.createWriteStream(novoCaminho))
-  .on('finish', () => callback(novoCaminho));
+  const tiposValidos = ['.jpg', '.png', '.jpeg'];
+  const tipo = path.extname(caminho);
+
+  const novoCaminho = `./assets/imagens/${fileName}${tipo}`;
+
+  if(tiposValidos.includes(tipo)){
+    fs.createReadStream(caminho)
+    .pipe(fs.createWriteStream(novoCaminho))
+    .on('finish', () => callback(novoCaminho, null));
+  }else{
+    callback(novoCaminho, {status: 'error', msg: 'Tipo inválido'});
+  }
 
 }
