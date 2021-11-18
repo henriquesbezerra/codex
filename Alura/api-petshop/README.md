@@ -2,10 +2,8 @@
 
 *Readme em construção......*
 
-Está é uma API destinada a um Pet Shop fictício, que possibilita
-a gestão de fornecedores, de estoque, etc... 
-
-
+API segura e escalável destinada a um Pet Shop fictício, que possibilita
+a gestão de fornecedores, de estoque, etc...
 
 **Roadmap:**
 
@@ -14,8 +12,7 @@ a gestão de fornecedores, de estoque, etc...
 - [ ] Visualizar fornecedores
 - [ ] Excluir fornecedores
 - [ ] Gestão de estoque
-- [ ]
-- [ ]
+<br/> ...
 
 **Packages utilizados**
 
@@ -27,6 +24,10 @@ a gestão de fornecedores, de estoque, etc...
     > *Cliente MySQL para Node.js com foco no desempenho. Suporta declarações preparadas, codificações não-utf8, protocolo de registo binário, compressão, ssl* - https://www.npmjs.com/package/mysql2
 - sequelize: ^6.9.0
     > *O Sequelize é um ORM baseado em Promisses para Postgres, MySQL, MariaDB, SQLite e Microsoft SQL Server. Apresenta um sólido suporte para transacções, relacionamentos, Lazy e Eager Loading, replicação de leitura e muito mais.* - https://sequelize.org/
+- config: ^3.3.6
+    > *O Node-config organiza configurações hierárquicas para a implementações de aplicações. Permite definir um conjunto de parâmetros padrão, e estende-los para diferentes ambientes de implementação (development, qa, staging, production, etc.).* - https://www.npmjs.com/package/config
+- dotenv: ^10.0.0
+  > *Dotenv é um módulo con zero dependências que carrega variáveis de ambiente de um arquivo .env para process.env. A configuração de armazenamento no ambiente separada do código é baseada na metodologia da 'The Twelve-Factor App'.* - https://www.npmjs.com/package/dotenv
 
 <br />
 
