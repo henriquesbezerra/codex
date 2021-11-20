@@ -21,6 +21,12 @@ app.use(express.json());
 app.use('/api/fornecedores', router_fornecedores);
 
 
+// Middleware para tratar os erros disparados
+app.use((error, request, response, next)=>{
+  return response.status(error.status || 400).send({ error: error.message });
+})
+
+
 // Criação do server express
 app.listen(3000, () => {
   console.log('\nVariaveis de ambiente carregadas.');

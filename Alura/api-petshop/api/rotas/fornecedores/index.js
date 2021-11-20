@@ -16,35 +16,35 @@ router.get('/', async (request, response) =>{
     const results = await TabelaFornecedor.listar();
     return response.json(results).status(200);
   }catch (error) {
-    return response.json(error).status(500);
+    return response.status(500).send(error);
   }
 });
 
 // Criação rota POST - para fazer cadastro de um novo registro no BD
-router.post('/', async (request, response) => {
+router.post('/', async (request, response, next) => {
   try{
     const fornecedor = new Fornecedor(request.body);
     const result = await fornecedor.criar();
-    return response.json(result).status(200);
+    return response.status(201).json(result);
   }catch (error) {
-    return response.json(error).status(500);
+    next(error);
   }
 });
 
 // Criação de rota GET - para buscar um fornecedor pelo ID
-router.get('/:id', async (request, response) => {
+router.get('/:id', async (request, response, next) => {
   try {
     const id = request.params.id;
     const fornecedor = new Fornecedor({ id: Number(id) });
     await fornecedor.buscar();
     return response.status(200).json(fornecedor);
   } catch (error) {
-    return response.status(404).send({ error: error.message });
+    next(error);
   }
 });
 
 // Criação de rota PUT - utilizado para atualizar dados
-router.put('/:id', async (request, response) =>{
+router.put('/:id', async (request, response, next) =>{
   try {
     const data = {
       id: request.params.id,
@@ -54,7 +54,18 @@ router.put('/:id', async (request, response) =>{
     await fornecedor.atualizar();
     return response.status(200).json(fornecedor);
   } catch (error) {
-    return response.status(404).send({ error: error.message });
+    next(error);
+  }
+});
+
+// Criação rota DELETE - método para remoção de dados
+router.delete('/:id', async (request, response, next)=>{
+  try {
+    const fornecedor = new Fornecedor({ id: request.params.id});
+    await fornecedor.apagar();
+    return response.status(204).end();
+  } catch (error) {
+    next(error);
   }
 });
 

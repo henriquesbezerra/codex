@@ -1,4 +1,5 @@
 const ModelFornecedores = require('./ModelFornecedores');
+const ResponseErrors = require('../../errors/ResponseErrors');
 
 module.exports ={
   listar(){
@@ -17,7 +18,7 @@ module.exports ={
     });
 
     if(!result){
-      throw new Error('Fornecedor não encontrado');
+      throw new ResponseErrors(404, 'Fornecedor não encontrado');
     }
 
     return result;
@@ -25,6 +26,14 @@ module.exports ={
 
   async update(id, data){
     return ModelFornecedores.update(data,{
+      where:{
+        id: id
+      }
+    })
+  },
+
+  async remover(id){
+    return ModelFornecedores.destroy({
       where:{
         id: id
       }

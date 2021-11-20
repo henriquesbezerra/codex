@@ -1,5 +1,7 @@
 const TabelaFornecedor = require('./TabelaFornecedores');
 
+// Importamos classe de erro NotFound
+const ResponseErrors = require('../../errors/ResponseErrors');
 
 class Fornecedor{
 
@@ -22,6 +24,7 @@ class Fornecedor{
   }
 
   async criar (){
+    this.validar();
     const resultado = await TabelaFornecedor.inserir({
       empresa: this.empresa,
       email: this.email,
@@ -61,10 +64,30 @@ class Fornecedor{
     });
 
     if(Object.keys(newData).length === 0){
-      throw new Error('Sem dados para atualizar');
+      throw new ResponseErrors(406, 'Sem dados para atualizar');
     }
 
     await TabelaFornecedor.update(this.id, newData);
+
+  }
+
+  async apagar(){
+    const result = await TabelaFornecedor.buscarPorId(this.id);
+
+    if(!result){
+      throw new Error('Fornecedor não encontrado');
+    }
+
+    await TabelaFornecedor.remover(this.id);
+  }
+
+  validar(){
+    const campos = ['empresa','email','categoria'];
+    campos.forEach(campo => {
+      if(typeof this[campo] !== 'string' || this[campo].length <= 0){
+        throw new ResponseErrors(406, `O campo: ${campo}, não foi preenchido corretamente!`);
+      }
+    });
 
   }
 }
