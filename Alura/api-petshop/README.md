@@ -7,12 +7,13 @@ a gestão de fornecedores, de estoque, etc...
 
 **Roadmap:**
 
-- [ ] Cadastrar fornecedores
-- [ ] Listar fornecedores
-- [ ] Visualizar fornecedores
-- [ ] Excluir fornecedores
-- [ ] Gestão de estoque
-<br/> ...
+- [x] Cadastrar fornecedores.
+- [x] Listar fornecedores.
+- [x] Visualizar fornecedores.
+- [x] Excluir fornecedores.
+- [x] Status de errors e classe para emissão de erros nas repostas da API.
+- [x] Restrição do tipo de resposta da API, através do header da requisição.
+<br/>
 
 **Packages utilizados**
 

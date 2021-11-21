@@ -3,6 +3,7 @@ require('dotenv/config');
 
 // Importação do módulo express
 const express = require("express");
+const ResponseErrors = require('./errors/ResponseErrors');
 
 // Importação do router de forncedores
 const router_fornecedores = require('./rotas/fornecedores');
@@ -16,6 +17,21 @@ const app = express();
 */
 app.use(express.json());
 
+
+/**
+ * Middleware para validação do formato requisitado
+ * pelas requisições
+ */
+app.use((request, reponse, next)=>{
+  const contentType = request.header('Accept');
+
+  if(contentType !== 'application/json'){
+    throw new ResponseErrors(406, 'Header Accept not valid');
+  }
+
+  next();
+
+})
 
 // Inclusão a instancia do servidor o grupo de rotas do fornecedores
 app.use('/api/fornecedores', router_fornecedores);
