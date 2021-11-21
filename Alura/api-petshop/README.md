@@ -7,12 +7,29 @@ a gestão de fornecedores, de estoque, etc...
 
 **Roadmap:**
 
+#### Parte 1: NodeJS: Crie uma API REST padronizada e escalável
 - [x] Cadastrar fornecedores.
 - [x] Listar fornecedores.
 - [x] Visualizar fornecedores.
 - [x] Excluir fornecedores.
 - [x] Status de errors e classe para emissão de erros nas repostas da API.
 - [x] Restrição do tipo de resposta da API, através do header da requisição.
+
+#### Parte 2: NodeJs API REST com Controle de Versão
+- [ ] Relacionamento de Fornecedores e Produtos
+- [ ] Arquétipos da API REST
+- [ ] Coleções de documentos
+- [ ] Stores
+- [ ] Controllers
+- [ ] Versionamento da API
+- [ ] Melhores práticas em APIs RESTful
+- [ ] Camadas de segurança e fabricação
+- [ ] Camada de cors e options
+- [ ] Serialização de dados
+- [ ] Template Method
+- [ ] DAO
+- [ ] Documentação da API
+
 <br/>
 
 **Packages utilizados**
