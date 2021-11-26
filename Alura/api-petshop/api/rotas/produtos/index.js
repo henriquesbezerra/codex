@@ -4,7 +4,7 @@ const Produto = require('./Produto');
 
 router.get('/', async (request, response)=>{
   try{
-    const results = await TabelaProdutos.listar(request.params.id);
+    const results = await TabelaProdutos.listar(request.params.idFornecedor);
     return response.json(results).status(200);
   }catch (error) {
     return response.status(500).send(error);
@@ -14,7 +14,7 @@ router.get('/', async (request, response)=>{
 
 router.post('/', async(request, response, next)=>{
   try {
-    const idFornecedor = request.params.id;
+    const idFornecedor = request.params.idFornecedor;
     const data = request.body;
     const produto = new Produto({
       fornecedor_id: idFornecedor,
@@ -25,6 +25,23 @@ router.post('/', async(request, response, next)=>{
   } catch (error) {
     next(error);
   }
+});
+
+router.delete('/:idProduto',async (request, response, next)=>{
+
+  try {
+    const idFornecedor = request.params.idFornecedor;
+    const idProduto = request.params.idProduto;
+    const produto = new Produto({
+      id: idProduto,
+      fornecedor_id: idFornecedor
+    });
+    await produto.apagar();
+    return response.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+
 })
 
 module.exports = router;

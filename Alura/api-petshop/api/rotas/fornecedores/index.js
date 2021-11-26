@@ -73,7 +73,7 @@ router.delete('/:id', async (request, response, next)=>{
 });
 
 // Associamos o conjunto de rotas de produtos a rotoas de fornecedores
-router.use('/:id/produtos', router_produtos); // Pegamos todos os produtos de um determinando fornecedor
+router.use('/:idFornecedor/produtos', router_produtos); // Pegamos todos os produtos de um determinando fornecedor
 
 // Exportação do router de fornecedores
 module.exports = router;

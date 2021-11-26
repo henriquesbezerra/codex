@@ -16,6 +16,15 @@ module.exports = {
 
   inserir(produto){
     return Modelo.create(produto);
+  },
+
+  remover(produto, fornecedor){
+    return Modelo.destroy({
+      where:{
+        id: produto,
+        fornecedor_id: fornecedor
+      }
+    });
   }
 
 };
