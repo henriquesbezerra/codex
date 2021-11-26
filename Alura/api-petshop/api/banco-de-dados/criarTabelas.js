@@ -2,15 +2,26 @@
   Arquivo para criacao das tabelas no banco
 */
 
-// Importamos nossa configura de criacao da tabela de fornecedores
-const Fornecedores = require('../rotas/fornecedores/ModelFornecedores');
+// Lista das tabelas que usaremos
+const modelos = [
+  require('../rotas/fornecedores/ModelFornecedores'),
+  require('../rotas/produtos/ModelProdutos'),
+]
 
-// Criacao da tabela no banco de dados
-Fornecedores
-  .sync()
-  .then(()=>{
-    console.log('Tabela Fornecedores criada com sucesso!')
-  })
-  .catch((error)=>{
-    console.error('Erro na criação da tabela Fornecedores!', error)
+async function criarTabelas(){
+
+  await modelos.forEach(async model => {
+    // Criacao da tabela no banco de dados
+    await model.sync().then(()=>{
+      console.log(`Tabela ${model} criada com sucesso!`);
+    })
+    .catch((error)=>{
+      console.log(`Tabela ${model} criada com sucesso!`);
+    });
   });
+
+}
+
+
+criarTabelas();
+

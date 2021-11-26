@@ -10,6 +10,9 @@ const TabelaFornecedor = require('./TabelaFornecedores');
 // Importamos a classe fornecedor
 const Fornecedor = require("./Fornecedor");
 
+// Import do roteador de produtos para as rotas de produtos associadas ao fornecedor
+const router_produtos = require('../produtos');
+
 // Criaao de rota GET
 router.get('/', async (request, response) =>{
   try{
@@ -68,6 +71,9 @@ router.delete('/:id', async (request, response, next)=>{
     next(error);
   }
 });
+
+// Associamos o conjunto de rotas de produtos a rotoas de fornecedores
+router.use('/:id/produtos', router_produtos); // Pegamos todos os produtos de um determinando fornecedor
 
 // Exportação do router de fornecedores
 module.exports = router;

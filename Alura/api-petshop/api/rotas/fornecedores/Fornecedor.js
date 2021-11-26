@@ -62,7 +62,7 @@ class Fornecedor{
         newData[campo] = this[campo];
       }
     });
-
+    console.log(newData);
     if(Object.keys(newData).length === 0){
       throw new ResponseErrors(406, 'Sem dados para atualizar');
     }
