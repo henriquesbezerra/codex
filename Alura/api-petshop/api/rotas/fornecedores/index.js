@@ -72,8 +72,25 @@ router.delete('/:id', async (request, response, next)=>{
   }
 });
 
+
+/** Midleware para verificação da existência do fornecedor,
+ * para evitar o erros como o de chave estrangeira no cadastro
+ * do produto, por exemplo.
+ */
+const verificaFornecedor = async (request, response, next) => {
+  try {
+    const id = request.params.idFornecedor;
+    const fornecedor = new Fornecedor({ id: Number(id) });
+    await fornecedor.buscar();
+    request.fornecedor = fornecedor;
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 // Associamos o conjunto de rotas de produtos a rotoas de fornecedores
-router.use('/:idFornecedor/produtos', router_produtos); // Pegamos todos os produtos de um determinando fornecedor
+router.use('/:idFornecedor/produtos', verificaFornecedor, router_produtos); // Pegamos todos os produtos de um determinando fornecedor
 
 // Exportação do router de fornecedores
 module.exports = router;
