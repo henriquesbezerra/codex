@@ -42,7 +42,7 @@ router.delete('/:idProduto',async (request, response, next)=>{
     next(error);
   }
 
-})
+});
 
 router.get('/:idProduto',async (request, response, next)=>{
   try {
@@ -55,7 +55,7 @@ router.get('/:idProduto',async (request, response, next)=>{
   } catch (error) {
     next(error);
   }
-})
+});
 
 router.put('/:idProduto', async (request, response, next)=>{
   try {
@@ -66,6 +66,20 @@ router.put('/:idProduto', async (request, response, next)=>{
     });
     await produto.atualizar();
     return response.status(200).json(produto);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch('/:idProduto/atualizar-estoque', async (request, response, next) => {
+  try {
+    const produto = new Produto({
+      id: request.params.idProduto,
+      fornecedor_id: request.fornecedor.id
+    });
+    const resultado = await produto.atualizarEstoque({ ...request.body });
+
+    return response.status(200).json(resultado);
   } catch (error) {
     next(error);
   }

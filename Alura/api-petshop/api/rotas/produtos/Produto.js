@@ -97,15 +97,33 @@ class Produto{
       throw new ResponseErrors(406, `O preço do produto não foi preenchido corretamente!`);
     }
 
-    if(typeof this.estoque !== 'number' || this.preco < 0){
+    if(typeof this.estoque !== 'number' || this.estoque < 0){
       throw new ResponseErrors(406, `O estoque do produto não foi preenchido corretamente!`);
     }
 
     if(typeof this.fornecedor_id !== 'number' || this.fornecedor_id == 0){
       throw new ResponseErrors(406, `O fornecedor do produto não foi preenchido corretamente!`);
     }
+  }
 
+  async atualizarEstoque({ type = 'SET', qtd = 0 }){
 
+    if(!["SET","REMOVE"].includes(type)){
+      throw new ResponseErrors(406, `Tipo de atualização do estoque desconhecido, use SET ou REMOVE`);
+    }
+
+    if(typeof qtd !== 'number' || this.estoque < 0){
+      throw new ResponseErrors(406, `Quantidade informada está incorreta!`);
+    }
+
+    const resultado = await TabelaProduto.atualizarEstoque(
+      this.id,
+      this.fornecedor_id,
+      type,
+      qtd
+    );
+
+    return resultado;
   }
 }
 
