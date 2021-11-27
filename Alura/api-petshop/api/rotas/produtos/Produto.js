@@ -40,6 +40,19 @@ class Produto{
 
   }
 
+  async buscar(){
+    const resultado = await TabelaProduto.buscarPorId(this.id, this.fornecedor_id);
+
+    this.titulo = resultado.titulo;
+    this.preco = resultado.preco;
+    this.estoque = resultado.estoque;
+    this.fornecedor_id = resultado.fornecedor_id;
+    this.id = resultado.id  || 0;
+    this.createdAt = resultado.createdAt  || 0;
+    this.updatedAt = resultado.updatedAt  || 0;
+
+  }
+
   async apagar(){
     await TabelaProduto.remover(this.id, this.fornecedor_id);
   }

@@ -4,6 +4,8 @@
 
 const Modelo = require('./ModelProdutos');
 
+const ResponseErrors = require('../../errors/ResponseErrors');
+
 module.exports = {
 
   listar(idFornecedor){
@@ -16,6 +18,20 @@ module.exports = {
 
   inserir(produto){
     return Modelo.create(produto);
+  },
+
+  async buscarPorId(id){
+    const result = await Modelo.findOne({
+      where:{
+        id: id
+      }
+    });
+
+    if(!result){
+      throw new ResponseErrors(404, 'Produto não encontrado');
+    }
+
+    return result;
   },
 
   remover(produto, fornecedor){

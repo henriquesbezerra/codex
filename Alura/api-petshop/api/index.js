@@ -9,7 +9,7 @@ const ResponseErrors = require('./errors/ResponseErrors');
 const router_fornecedores = require('./rotas/fornecedores');
 
 // Importação do router de produtos
-const router_produtos = require('./rotas/produtos');
+// const router_produtos = require('./rotas/produtos');
 
 // Instânciação do módulo express na variável app
 const app = express();

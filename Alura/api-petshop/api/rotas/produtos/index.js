@@ -44,4 +44,18 @@ router.delete('/:idProduto',async (request, response, next)=>{
 
 })
 
+router.get('/:idProduto',async (request, response, next)=>{
+  try {
+    const produto = new Produto({
+      id: request.params.idProduto,
+      fornecedor_id: request.fornecedor.id
+    });
+    await produto.buscar();
+    return response.status(200).json(produto);
+  } catch (error) {
+    next(error);
+  }
+
+})
+
 module.exports = router;
