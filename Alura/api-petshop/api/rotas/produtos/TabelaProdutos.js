@@ -34,6 +34,15 @@ module.exports = {
     return result;
   },
 
+  async update(idProduto, idFornecedor, data){
+    return Modelo.update(data,{
+      where:{
+        id: idProduto,
+        fornecedor_id: idFornecedor
+      }
+    })
+  },
+
   remover(produto, fornecedor){
     return Modelo.destroy({
       where:{

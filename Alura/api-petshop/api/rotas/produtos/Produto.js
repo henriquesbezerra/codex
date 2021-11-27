@@ -53,6 +53,37 @@ class Produto{
 
   }
 
+  async atualizar(){
+
+    await TabelaProduto.buscarPorId(this.id);
+    const newData = {};
+
+    if(typeof this.titulo !== 'string' || this.titulo.length <= 0){
+      throw new ResponseErrors(406, `O título do produto não foi preenchido corretamente!`);
+    }else{
+      newData.titulo = this.titulo;
+    }
+
+    if(typeof this.preco !== 'number' || this.preco <= 0){
+      throw new ResponseErrors(406, `O preço do produto não foi preenchido corretamente!`);
+    }else{
+      newData.preco = this.preco;
+    }
+
+    if(typeof this.estoque !== 'number' || this.preco < 0){
+      throw new ResponseErrors(406, `O estoque do produto não foi preenchido corretamente!`);
+    }else{
+      newData.estoque = this.estoque;
+    }
+
+    if(Object.keys(newData).length === 0){
+      throw new ResponseErrors(406, 'Sem dados para atualizar');
+    }
+
+    await TabelaProduto.update(this.id, this.fornecedor_id, newData);
+
+  }
+
   async apagar(){
     await TabelaProduto.remover(this.id, this.fornecedor_id);
   }

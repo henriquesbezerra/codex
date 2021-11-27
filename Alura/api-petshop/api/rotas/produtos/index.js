@@ -55,7 +55,20 @@ router.get('/:idProduto',async (request, response, next)=>{
   } catch (error) {
     next(error);
   }
+})
 
+router.put('/:idProduto', async (request, response, next)=>{
+  try {
+    const produto = new Produto({
+      id: request.params.idProduto,
+      fornecedor_id: request.fornecedor.id,
+      ...request.body
+    });
+    await produto.atualizar();
+    return response.status(200).json(produto);
+  } catch (error) {
+    next(error);
+  }
 })
 
 module.exports = router;
