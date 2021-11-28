@@ -6,7 +6,8 @@ API para um cursinho de inglês fictício que utiliza o ORM Sequelize que abstra
 consultas SQL no banco de dados para métodos Javascript, assim aumentando a produtividade
 e facilidade de desenvolvimento.
 
-**Modelo de dados:**
+**Modelo de dados v1:**
+
 ![Modelo dados projecto orm-sequeliza](https://github.com/henriquesbezerra/codex/blob/master/Alura/orm-sequelize/assets/DERv1.png?raw=true)
 
 **Roadmap:**
