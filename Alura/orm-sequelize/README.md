@@ -7,7 +7,7 @@ consultas SQL no banco de dados para métodos Javascript, assim aumentando a pro
 e facilidade de desenvolvimento.
 
 **Modelo de dados:**
-![Modelo dados projecto orm-sequeliza](https://github.com/henriquesbezerra/henriquesbezerra/blob/main/assets/background-gh.gif)
+![Modelo dados projecto orm-sequeliza](https://github.com/henriquesbezerra/codex/blob/master/Alura/orm-sequelize/assets/DERv1.png?raw=true)
 
 **Roadmap:**
 
