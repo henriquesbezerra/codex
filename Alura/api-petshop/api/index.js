@@ -5,6 +5,9 @@ require('dotenv/config');
 const express = require("express");
 const ResponseErrors = require('./errors/ResponseErrors');
 
+const cors = require('cors');
+
+
 // Importação do router de forncedores
 const router_fornecedores = require('./rotas/fornecedores');
 
@@ -20,6 +23,10 @@ const app = express();
 */
 app.use(express.json());
 
+/** Middleware para definir o Access-Control-Allow-Origin da aplicação - CORS */
+app.use(cors({
+  origin: '*'
+}));
 
 /**
  * Middleware para validação do formato requisitado
@@ -27,7 +34,7 @@ app.use(express.json());
  */
 app.use((request, reponse, next)=>{
 
-  const contentType = request.header('Accept');
+  const contentType = request.headers['content-type'];
   if(request.method === 'GET' && contentType !== 'application/json'){
     throw new ResponseErrors(406, 'Header Accept not valid');
   }

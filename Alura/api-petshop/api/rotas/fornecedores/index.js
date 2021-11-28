@@ -13,6 +13,17 @@ const Fornecedor = require("./Fornecedor");
 // Import do roteador de produtos para as rotas de produtos associadas ao fornecedor
 const router_produtos = require('../produtos');
 
+// Rota OPTIONS responde as requisicoes do navegador
+// antes de executar o método HTTP principal e informa os headers aceitos na requisicao
+router.options('/', (request, response) => {
+  // Informa os métodos http aceitos
+  response.set('Access-Control-Allow-Methods', 'GET, POST');
+  // Informa o tipos de content-typ aceitos
+  response.set('Access-Control-Allow-Headers', 'Content-Type');
+  response.status(204).end();
+})
+
+
 // Criaao de rota GET
 router.get('/', async (request, response) =>{
   try{
@@ -33,6 +44,15 @@ router.post('/', async (request, response, next) => {
     next(error);
   }
 });
+
+
+router.options('/:id', (request, response) => {
+  // Informa os métodos http aceitos
+  response.set('Access-Control-Allow-Methods', 'GET, PUT, DELETE, PATCH');
+  // Informa o tipos de content-typ aceitos
+  response.set('Access-Control-Allow-Headers', 'Content-Type');
+  response.status(204).end();
+})
 
 // Criação de rota GET - para buscar um fornecedor pelo ID
 router.get('/:id', async (request, response, next) => {
