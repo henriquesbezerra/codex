@@ -1,25 +1,3 @@
-/**
- * Exercício 01 - Mario, Mundo 1-1 (Versão fácil)
- * Perto do final do mundo 1-1 no Super Mario Brothers da Nintendo, Mario deve 
- * ascender a pirâmide de blocos. Vamos recriar essa pirâmide em C de forma textual
- * usando hashes (#) para representar cada bloco. O programa permitira que o usuário
- * decida qual será a altura da pirâmide solicitando um número inteiro positivo entre 1 e 8.
- * Quando houver uma entrada de tamanho 8 o programa deverá apresentar:
- *        #
-         ##
-        ###
-       ####
-      #####
-     ######
-    #######
-   ########
-
-    Tamanho: 4               
-      #
-     ##
-    ###
-   ####
- * **/
 #include <stdio.h>
 #include <cs50.h>
 
