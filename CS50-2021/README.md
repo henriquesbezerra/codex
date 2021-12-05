@@ -1,13 +1,16 @@
 
 ### Considerações iniciais
 
-> 1. Todos os exercícios e projetos que se encontrarem nesse diretório foram desenvolvidos utilizando uma IDE baseada em nuvem chamada CS50 IDE, os códigos presente podem possuir dependências disponíveis apenas no ambiente da IDE, como o header cs50.h que pode ser encontrado nos exercícios feitos em C. 
+> 1. Esse curso foi disponibilizado gratuitamente e com legendas em português atraves da Fundação Estudar: https://ead.napratica.org.br
 
-> 2. A IDE CS50 pode ser acessada em https://ide.cs50.io ;
+> 2. O curso utiliza uma ferramenta de apoio para o desenvolvimento dos exercicios, a CS50 IDE, uma IDE baseada em nuvem. Essa IDE conta com algumas dependencias já configuradas que facilitam o processo de aprendizado. Porém optei por preparar meu próprio ambiente de desenvolvimento no linux.
+
+> 3. A IDE CS50 pode ser acessada em https://ide.cs50.io ;
+
+> 4. Os exercicios na linguagem C utilizar a lib cs50.h que podemos encontrar no repositório: https://github.com/cs50/libcs50
 
 > 3. Esse arquivo README.md possuirá apenas referências aos tópicos do curso. Não irá apresentar o conteúdo completo do curso.
 
-> 4. Esse curso foi disponibilizado gratuitamente e com legendas em português atraves da Fundação Estudar: https://ead.napratica.org.br
 
 ## Tópicos iniciais
 
