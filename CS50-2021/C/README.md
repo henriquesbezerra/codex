@@ -1,6 +1,6 @@
 ## Enunciados das questões
 
-#### Exercício 01 - Mario, Mundo 1-1 (Versão fácil)
+### Exercício 01 - Mario, Mundo 1-1 (Versão fácil)
 Perto do final do mundo 1-1 no Super Mario Brothers da Nintendo, Mario deve ascender a pirâmide de blocos. Vamos recriar essa pirâmide em C de forma textual usando hashes (#) para representar cada bloco. O programa permitira que o usuário decida qual será a altura da pirâmide solicitando um número inteiro positivo entre 1 e 8.
 
 <pre>
@@ -24,7 +24,7 @@ Tamanho: 4
 </pre>
 
 
-#### Exercício 02 - Mario, Mundo 1-1 (Desafio)
+### Exercício 02 - Mario, Mundo 1-1 (Desafio)
 
 No inicio do mundo 1-1 no Super Mario Brothers da Nintendo, Mario deve pular pirâmides de blocos adjacentes. Vamos recriar essa pirâmide em C de forma textual usando hashes (#) para representar cada bloco. O programa permitira que o usuário decida qual será a altura da pirâmide solicitando um número inteiro positivo entre 1 e 8.
  
@@ -49,9 +49,9 @@ Quando houver uma entrada de tamanho 8 o programa deverá apresentar:
 </pre> 
 
 
-#### Algoritmos Gulosos ou Algoritmos Ambiciosos
+### Algoritmos Gulosos ou Algoritmos Ambiciosos
 
-Ao dar o troco, é provável que você queira minimizar o número de moedas que está distribuindo para cada cliente, para não acabar com o estoque (ou irritar o cliente!). Felizmente, a ciência da computação deu aos caixas em todos os lugares maneiras de minimizar o número de moedas devidas: algoritmos ambiciosos, também conhecidos como gulosos ou gananciosos.
+Ao dar algum troco, é provável que você queira minimizar o número de moedas que dará ao cliente, para não acabar com o estoque (ou irritar o cliente!). Felizmente, a ciência da computação deu aos caixas em todos os lugares maneiras de minimizar o número de moedas devidas: algoritmos ambiciosos, também conhecidos como gulosos ou gananciosos.
 
 De acordo com o Instituto Nacional de Padrões e Tecnologia (NIST), um algoritmo ambicioso é aquele “que sempre pega a melhor solução imediata, ou local, enquanto encontra uma resposta. Algoritmos ambiciosos encontram a solução geral ou globalmente ideal para alguns problemas de otimização, mas podem encontrar soluções menos do que ideais para algumas instâncias de outros problemas.”
 
