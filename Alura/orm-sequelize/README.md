@@ -44,5 +44,20 @@ e facilidade de desenvolvimento.
 <br />
 
 
+### Commands
+
+1. Comando da cli do sequilize que faz configurações inicias dentro do projeto, criando as pastas config, migrations, models e seeders
+```
+yarn sequelize-cli init
+```
+
+2. Cria o model e a migration de uma tabela
+```
+yarn sequelize-cli model:create --name Pessoas --attributes name:string,email:string,ativo:boolean,role:string
+```
+
+<br/>
+
+
 
 > *Projeto prático feito no curso NodeJS: Crie uma API REST padronizada e escalável da plataforma de ensino Alura.*
