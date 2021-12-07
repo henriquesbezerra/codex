@@ -51,12 +51,58 @@ e facilidade de desenvolvimento.
 yarn sequelize-cli init
 ```
 
-2. Cria o model e a migration de uma tabela
+2. Cria o model<sup>1</sup> e a migration<sup>2</sup> de uma tabela
 ```
 yarn sequelize-cli model:create --name Pessoas --attributes name:string,email:string,ativo:boolean,role:string
 ```
 
+3. Criação da tabelas no banco através das migrations
+```
+yarn sequelize-cli db:migrate
+```
+
+4. Desfazer ultima migração feita
+```
+yarn sequelize-cli db:migrate:undo
+```
+
+5. Desfazer uma migração específica
+```
+yarn sequelize-cli db:migrate:undo --name [data-hora]-create-[nome-da-tabela].js
+```
+
+6. Criando arquivo de Seeder
+```
+yarn sequelize-cli seed:generate --name demo-pessoas
+```
+
+7. Executa os seeders para criar os dados demo no banco de dados
+```
+yarn sequelize-cli db:seed:all
+```
+
+8. Desfazendo última seed feita
+```
+yarn sequelize-cli db:seed:undo
+```
+
+9. Desfazer uma seed específica
+```
+yarn sequelize-cli ddb:seed:undo --seed nome-do-arquivo
+```
+
+10. Desfazer todos os seed
+```
+yarn sequelize-cli db:seed:undo:all
+```
+
 <br/>
+
+> <sup>2</sup> Migrations em ORM, se tratam de arquivos que que são utilizados para mapear alterações incrementais e rastreáveis no banco de dados, que podem ser revertidas quando necessário. Além disso possibilita coordenar alterações feitas por diferentes pessoas nas tabelas do banco.
+
+
+<br/>
+
 
 
 
