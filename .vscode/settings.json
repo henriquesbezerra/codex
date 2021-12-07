@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.module": "php",
+        ".env": "dotenv",
+        "cs50.h": "c"
+    }
+}
