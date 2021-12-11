@@ -11,6 +11,20 @@ class PessoaController {
     }
   }
 
+  static async view(req, res){
+    try {
+      const { id } = req.params;
+      const result = await database.Pessoas.findOne({
+        where:{
+          id: id
+        }
+      });
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
   static async create(req, res)
   {
     try {
@@ -25,13 +39,31 @@ class PessoaController {
   {
     try {
       const { id } = req.params;
-      const result = await database.Pessoas.update(req.body, {
+      await database.Pessoas.update(req.body, {
         where: {
           id: id
         }
       });
-      console.log(result);
+      const result = await database.Pessoas.findOne({
+        where:{
+          id: id
+        }
+      });
       return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
+  static async delete(req, res){
+    try {
+      const { id } = req.params;
+      await database.Pessoas.destroy({
+        where:{
+          id: id
+        }
+      });
+      return res.status(204).end();
     } catch (error) {
       return res.status(500).json(error.message);
     }
