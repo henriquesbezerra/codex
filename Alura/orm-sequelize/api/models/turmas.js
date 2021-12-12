@@ -2,9 +2,6 @@
 const {
   Model
 } = require('sequelize');
-const { Sequelize } = require('.');
-const pessoas = require('../models/pessoas');
-const matriculas = require('./matriculas');
 module.exports = (sequelize, DataTypes) => {
   class Turmas extends Model {
     /**
@@ -14,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(matriculas, {
+      this.hasMany(models.Matriculas, {
         foreignKey: 'turma_id'
       });
-      this.belongsTo(pessoas,{
+      this.belongsTo(models.Pessoas,{
         foreignKey: 'docente_id'
       });
     }
@@ -27,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     nivel: DataTypes.STRING,
     descricao: DataTypes.STRING,
     docente_id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references:{
         model: require('../models/pessoas'),

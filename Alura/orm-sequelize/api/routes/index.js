@@ -2,6 +2,7 @@ const PessoaController = require('../controllers/PessoaController');
 const cors = require('cors');
 const { json } = require("express");
 const pessoasRouter = require('./pessoasRouter');
+const turmasRouter = require('./turmasRouter');
 
 module.exports = (app) =>{
   /*
@@ -16,4 +17,5 @@ module.exports = (app) =>{
   }));
 
   app.use('/pessoas', pessoasRouter);
+  app.use('/turmas', turmasRouter);
 }
