@@ -13,10 +13,12 @@ e facilidade de desenvolvimento.
 **Roadmap:**
 
 #### Parte 1: ORM com NodeJS: API com Sequelize e MySQL ORM com NodeJS: API com Sequelize e MySQL
-- [ ] Criar API do zero com Sequelize;
-- [ ] Como o ORM funciona junto a um banco SQL;
-- [ ] Organizar projeto no padrão MVC;
-- [ ] CRUD com Sequilize;
+- [x] Criar API do zero com Sequelize;
+- [x] Como o ORM funciona junto a um banco SQL;
+- [x] Organizar projeto no padrão MVC;
+- [x] CRUD com Sequilize;
+  - [x] Pessoas
+  - [x] Turmas
 
 <br/>
 
