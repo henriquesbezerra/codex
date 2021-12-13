@@ -21,7 +21,12 @@ module.exports = (sequelize, DataTypes) => {
   Pessoas.init(
     {
       name: DataTypes.STRING,
-      email: DataTypes.STRING,
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+
+        }
+      },
       ativo: DataTypes.BOOLEAN,
       role: DataTypes.STRING,
     },
