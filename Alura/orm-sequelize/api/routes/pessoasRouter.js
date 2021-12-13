@@ -8,5 +8,6 @@ router.get('/:id', (req, res) => PessoaController.view(req, res));
 router.post('/', (req, res) => PessoaController.create(req, res));
 router.put('/:id', (req, res) => PessoaController.update(req, res));
 router.delete('/:id', (req, res) => PessoaController.delete(req, res));
+router.post('/:id/restore', (req, res) => PessoaController.restore(req, res));
 
 module.exports = router;

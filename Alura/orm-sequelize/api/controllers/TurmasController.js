@@ -66,6 +66,20 @@ module.exports = {
     }
   },
 
+  restore: async (req, res)=>{
+    try {
+      const { id } = req.params;
+      await database.Turmas.restore({
+        where:{
+          id: id
+        }
+      });
+      return res.status(204).end();
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
   pegarAlunosPorTurma: async (req, res) => {
     try {
       const { id } = req.params;

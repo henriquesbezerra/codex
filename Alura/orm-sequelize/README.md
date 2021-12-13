@@ -20,6 +20,17 @@ e facilidade de desenvolvimento.
   - [x] Pessoas
   - [x] Turmas
 
+#### Parte 2: ORM com NodeJS: Avançando nas funcionalidades do Sequelize
+- [] Ferramentas do Sequelize
+- [] Atender necessidades específicas de um projeto
+- [] Integridades no banco de dados
+- [] Organização do padrão do projeto para escalabilidade do projeto
+- [] Implementação soft deletes
+  - O sequelize possibilita o soft delete através da configuração 'paranoid' que podemos habilitar
+    nas Models, assim todo remoção través do método destroy() irá fazer um update numa coluna deletedAt na tabela.
+- [] Busca de turmas abertas por intervalo de data
+- [] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
+
 <br/>
 
 **Packages utilizados**
@@ -96,6 +107,11 @@ yarn sequelize-cli ddb:seed:undo --seed nome-do-arquivo
 10. Desfazer todos os seed
 ```
 yarn sequelize-cli db:seed:undo:all
+```
+
+11. Criar novas migrations
+```
+yarn sequelize-cli migration:generate --name alter-matriculas
 ```
 
 <br/>

@@ -10,6 +10,8 @@ router
   .post('/', (req, res) => TurmasController.create(req, res))
   .post('/:id/aluno/:alunoId', (req, res) => TurmasController.incluirAluno(req, res))
   .put('/:id', (req, res) => TurmasController.update(req, res))
-  .delete('/:id', (req, res) => TurmasController.delete(req, res));
+  .delete('/:id', (req, res) => TurmasController.delete(req, res))
+  .post('/:id/restore', (req, res) => TurmasController.restore(req, res));
+
 
 module.exports = router;

@@ -69,6 +69,20 @@ class PessoaController {
     }
   }
 
+  static async restore(req, res){
+    try {
+      const { id } = req.params;
+      await database.Pessoas.restore({
+        where:{
+          id: id
+        }
+      });
+      return res.status(204).end();
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
 
 }
 

@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   }, {
     sequelize,
+    paranoid: true, // habilita soft deletes
     modelName: 'Matriculas',
   });
   return Matriculas;
