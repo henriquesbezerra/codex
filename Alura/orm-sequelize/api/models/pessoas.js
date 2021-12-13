@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   class Pessoas extends Model {
@@ -12,23 +10,36 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Turmas,{
-        foreignKey: 'docente_id'
+      this.hasMany(models.Turmas, {
+        foreignKey: "docente_id",
       });
       this.hasMany(models.Matriculas, {
-        foreignKey: 'aluno_id'
+        foreignKey: "aluno_id",
       });
     }
-  };
-  Pessoas.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    ativo: DataTypes.BOOLEAN,
-    role: DataTypes.STRING
-  }, {
-    sequelize,
-    paranoid: true, // habilita soft deletes
-    modelName: 'Pessoas',
-  });
+  }
+  Pessoas.init(
+    {
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      ativo: DataTypes.BOOLEAN,
+      role: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      paranoid: true, // habilita soft deletes
+      modelName: "Pessoas",
+      // Definicao de escopos, serve para modificar todas as selects feitas
+      defaultScope: {
+        where: {
+          ativo: true,
+        },
+      },
+      scopes:{
+        todos: { where: {} }
+        // etc: { where: {} }
+      }
+    }
+  );
   return Pessoas;
 };

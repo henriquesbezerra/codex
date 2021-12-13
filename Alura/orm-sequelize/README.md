@@ -25,9 +25,15 @@ e facilidade de desenvolvimento.
 - [] Atender necessidades específicas de um projeto
 - [] Integridades no banco de dados
 - [] Organização do padrão do projeto para escalabilidade do projeto
-- [] Implementação soft deletes
+- [x] Migrations de alteração para incluir coluna deletedAt
+- [x] Implementação soft deletes
   - O sequelize possibilita o soft delete através da configuração 'paranoid' que podemos habilitar
     nas Models, assim todo remoção través do método destroy() irá fazer um update numa coluna deletedAt na tabela.
+- [x] Método restore e nova rota para restaurar registros deletados com soft delete
+- [x] Escopos de models
+  - São restrições e/ou definições que são utilizadas em queries, que podem ser reaproveitadas na aplicação
+  - [x] escopo padrão
+  - [x] sobreescrita de escopo
 - [] Busca de turmas abertas por intervalo de data
 - [] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
 

@@ -78,7 +78,7 @@ module.exports = {
     } catch (error) {
       return res.status(500).json(error.message);
     }
-  }
+  },
 
   pegarAlunosPorTurma: async (req, res) => {
     try {
