@@ -27,13 +27,17 @@ e facilidade de desenvolvimento.
 - [] Organização do padrão do projeto para escalabilidade do projeto
 - [x] Migrations de alteração para incluir coluna deletedAt
 - [x] Implementação soft deletes
+  - [x] Método restore e nova rota para restaurar registros deletados com soft delete
   - O sequelize possibilita o soft delete através da configuração 'paranoid' que podemos habilitar
     nas Models, assim todo remoção través do método destroy() irá fazer um update numa coluna deletedAt na tabela.
-- [x] Método restore e nova rota para restaurar registros deletados com soft delete
+  - Sequelize DOC Reference: https://sequelize.org/master/manual/paranoid.html
 - [x] Escopos de models
   - São restrições e/ou definições que são utilizadas em queries, que podem ser reaproveitadas na aplicação
   - [x] escopo padrão
   - [x] sobreescrita de escopo
+  - Sequelize DOC Reference: https://sequelize.org/master/manual/scopes.html
+- [] Validação de dados pela model
+  - Sequelize DOC Reference: https://sequelize.org/master/manual/validations-and-constraints.html
 - [] Busca de turmas abertas por intervalo de data
 - [] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
 

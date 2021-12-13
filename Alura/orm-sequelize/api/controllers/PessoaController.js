@@ -13,6 +13,10 @@ class PessoaController {
 
   static async indexAll(req, res){
     try {
+      /**
+       * Exemplo de sobescrita de escopo
+       * Reference: https://sequelize.org/master/manual/scopes.html
+       */
       const result = await database.Pessoas.scope('todos').findAll();
       return res.status(200).json(result);
     } catch (error) {

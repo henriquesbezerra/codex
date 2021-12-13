@@ -23,7 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.STRING,
   }, {
     sequelize,
-    paranoid: true, // habilita soft deletes
+    /**
+     * Paranoid possibilita o soft deletes
+     * Reference: https://sequelize.org/master/manual/paranoid.html
+     */
+    paranoid: true,
     modelName: 'Matriculas',
   });
   return Matriculas;

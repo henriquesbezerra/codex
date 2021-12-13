@@ -27,9 +27,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      paranoid: true, // habilita soft deletes
+      /**
+       * Paranoid possibilita o soft deletes
+       * Reference: https://sequelize.org/master/manual/paranoid.html
+       */
+      paranoid: true,
       modelName: "Pessoas",
-      // Definicao de escopos, serve para modificar todas as selects feitas
+      /**
+       * Definicao de escopos, serve para modificar todas as selects feitas
+       * Reference: https://sequelize.org/master/manual/scopes.html
+       */
       defaultScope: {
         where: {
           ativo: true,
