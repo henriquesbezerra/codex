@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('turmas', [
+    await queryInterface.bulkInsert('Turmas', [
       {
         docente_id: 1,
         nivel: 'basic',
@@ -36,6 +36,6 @@ module.exports = {
      * Example:
     * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('turmas', null, {});
+    await queryInterface.bulkDelete('Turmas', null, {});
   }
 };

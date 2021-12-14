@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-     await queryInterface.bulkInsert('matriculas', [
+    await queryInterface.bulkInsert('Matriculas', [
       {
         turma_id: 1,
         aluno_id: 2,
@@ -36,6 +36,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.bulkDelete('matriculas', null, {});
+    await queryInterface.bulkDelete('Matriculas', null, {});
   }
 };

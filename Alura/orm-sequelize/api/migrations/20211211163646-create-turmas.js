@@ -17,9 +17,9 @@ module.exports = {
       descricao: {
         type: Sequelize.STRING
       },
-      docente_id:{
+      docente_id: {
         type: Sequelize.INTEGER,
-        references:{
+        references: {
           model: 'Pessoas',
           key: 'id'
         }

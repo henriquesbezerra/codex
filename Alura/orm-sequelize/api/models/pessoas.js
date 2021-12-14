@@ -21,12 +21,22 @@ module.exports = (sequelize, DataTypes) => {
   Pessoas.init(
     {
       name: DataTypes.STRING,
+
+      /**
+      * Validação de campo pelo model
+      * Reference: https://sequelize.org/master/manual/validations-and-constraints.html
+      */
       email: {
         type: DataTypes.STRING,
         validate: {
-
+          //isEmail: true // Forma básica
+          isEmail: { // formato customizado
+            args: true,
+            msg: 'Email inválido'
+          }
         }
       },
+
       ativo: DataTypes.BOOLEAN,
       role: DataTypes.STRING,
     },
@@ -47,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
           ativo: true,
         },
       },
-      scopes:{
+      scopes: {
         todos: { where: {} }
         // etc: { where: {} }
       }
