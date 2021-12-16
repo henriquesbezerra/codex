@@ -38,6 +38,25 @@ class PessoaController {
     }
   }
 
+  /**
+   * Métodos utilizando mixins e escopos de associacao
+   */
+  static async getRegistrations(req, res){
+    try {
+      const { id } = req.params;
+      const result = await database.Pessoas.findOne({
+        where:{
+          id: id
+        }
+      });
+      const matriculas = await result.getMatriculasConfirmadas();
+      const raw = { result, matriculas };
+      return res.status(200).json(raw);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  }
+
   static async create(req, res)
   {
     try {

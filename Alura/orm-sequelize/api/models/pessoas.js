@@ -13,14 +13,33 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.Turmas, {
         foreignKey: "docente_id",
       });
+
+      /**
+       * Exemplo de escopo de associacao
+       * a partir desses escopos de associao o sequelize
+       * gera alguns métodos automáticos que podemos usar através de mixins
+       * https://sequelize.org/master/manual/association-scopes.html
+       */
       this.hasMany(models.Matriculas, {
         foreignKey: "aluno_id",
+        scope: { status: 'ativo'},
+        as: 'matriculasConfirmadas'
       });
     }
   }
   Pessoas.init(
     {
-      name: DataTypes.STRING,
+
+      name: {
+       type: DataTypes.STRING,
+       validate: {
+         funcao_validadora: (dado) =>{
+           if(dado.length < 3 ){
+            throw new Error('Nome deve ter mais de 3 caracteres.');
+           }
+         }
+       }
+      },
 
       /**
       * Validação de campo pelo model

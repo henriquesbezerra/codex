@@ -36,12 +36,16 @@ e facilidade de desenvolvimento.
   - [x] escopo padrão
   - [x] sobreescrita de escopo
   - Sequelize DOC Reference: https://sequelize.org/master/manual/scopes.html
-- [] Validação de dados pela model
+- [ ] Escopos de associação & Mixins
+  - Sequelize DOC Reference: https://sequelize.org/master/manual/association-scopes.html
+- [x] Validação de dados pela model
   - Sequelize DOC Reference: https://sequelize.org/master/manual/validations-and-constraints.html
 - [] Busca de turmas abertas por intervalo de data
 - [] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
 
 <br/>
+
+
 
 **Packages utilizados**
 
@@ -66,6 +70,67 @@ e facilidade de desenvolvimento.
 
 <br />
 
+**Maiores detalhes sobre constraints**
+<details>
+  <p>
+    Constraints são regras restringem os dados nas tabelas; elas limitam os tipos de dados que podem ser inseridos em uma tabela/coluna e garante a integridade e confiabilidade dos dados que estão no banco de dados. Eles podem ser aplicados tanto em colunas individuais como de forma geral para toda a tabela.
+  </p>
+
+  <p>
+    Se difere das validações em javascript, por que na verificação de constraints é executada uma query, e quem devolve o erro para o JavaScript é o SQL.
+  </p>
+
+  <p>
+    São constraints em SQL:
+  </p>
+
+  - NOT NULL - garante que não exista nenhum valor NULL na coluna;
+  - UNIQUE - Garante que não existam valores iguais em uma coluna;
+  - PRIMARY KEY - Identifica cada linha em uma tabela através de um valor único (junção de NOT NULL e UNIQUE);
+  - FOREIGN KEY - Identifica um valor único em outra tabela como chave;
+  - CHECK - Garante que todos os valores em uma coluna satisfazem uma condição específica;
+  - DEFAULT - Determina um valor padrão caso nenhum valor seja informado;
+  - INDEX - Para criar índices e facilitar o acesso a determinados conjuntos de dados.
+
+</details>
+
+<br/>
+**Maiores detalhes sobre Mixins**
+<details>
+  <p>
+    Mixins são classes que contêm métodos que podem ser utilizados por outras classes, sem a necessidade de herança direta.
+  </p>
+
+  <p>
+    No Sequelize, temos uma diferença entre escopos de modelo, que são aplicados em chamadas estáticas ao modelo, e escopos de associação, que são uma regra, ou um conjunto de atributos que são automaticamente aplicados em instâncias do modelo, como em Pessoas.associate = function(models) {...}.
+  </p>
+
+  <p>
+    Escopos de associação se comportam da mesma forma que os escopos de modelo, no sentido que ambos aplicam palavras-chave como WHERE em chamadas ao banco; mas os mixins são métodos que existem somente nas instâncias dos modelos: Pessoas.getMatriculasConfirmadas, Niveis.getNiveisPorTurma, etc.
+  </p>
+
+  <p>
+    A lista de métodos criados automaticamente com as instâncias de modelo são:
+  </p>
+
+  - addModel()
+  - addModels()
+  - countModels()
+  - createModel()
+  - getModels()
+  - hasModel()
+  - hasModels()
+  - removeModel()
+  - removeModels()
+  - setModels()
+
+  <p>
+    Lembrando que “Model” e “Models”, aqui, refere-se ao nome do modelo! Lembre-se também que o Sequelize cria os nomes automaticamente mas não entende muito bem o singular e plural em português, mas você pode definir nomes personalizados para seus mixins, utilizando a propriedade ```as```.
+  </p>
+</details>
+
+
+<br/>
 
 ### Commands
 
@@ -130,8 +195,5 @@ yarn sequelize-cli migration:generate --name alter-matriculas
 
 
 <br/>
-
-
-
 
 > *Projeto prático feito no curso NodeJS: Crie uma API REST padronizada e escalável da plataforma de ensino Alura.*
