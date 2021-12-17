@@ -21,10 +21,7 @@ e facilidade de desenvolvimento.
   - [x] Turmas
 
 #### Parte 2: ORM com NodeJS: Avançando nas funcionalidades do Sequelize
-- [] Ferramentas do Sequelize
-- [] Atender necessidades específicas de um projeto
-- [] Integridades no banco de dados
-- [] Organização do padrão do projeto para escalabilidade do projeto
+- [x] Organização do padrão do projeto para escalabilidade do projeto
 - [x] Migrations de alteração para incluir coluna deletedAt
 - [x] Implementação soft deletes
   - [x] Método restore e nova rota para restaurar registros deletados com soft delete
@@ -45,8 +42,13 @@ e facilidade de desenvolvimento.
   - [x] Operadores SQL
     - Sequelize DOC Reference: https://sequelize.org/master/manual/model-querying-basics.html#operators
 - [x] Filtrar e Enumerar registros com métodos finders, Agrupamento de registros com group, passar sql para dentro do sequelize com Sequelize.literal
-- [ ] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
+- [x] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
   - Sequelize DOC Reference: https://sequelize.org/master/manual/transactions
+- [x] Camada de serviços
+  - Transferir responsabilidade de comunicacao com o banco do controller para o service
+  - Criar servicos específicos que herdem métodos da classe principal
+  - Métodos específicos para um service
+  - Centralizar os services em um único export index.js
 
 <br/>
 

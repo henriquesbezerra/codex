@@ -1,11 +1,13 @@
-const { Sequelize } = require('../models');
 const database = require('../models');
+
+const { PessoasServices } = require('../services');
+const service = new PessoasServices('Pessoas');
 
 class PessoaController {
 
   static async indexActives(req, res){
     try {
-      const result = await database.Pessoas.findAll();
+      const result = await service.findAll(); // utilizando services
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -18,7 +20,7 @@ class PessoaController {
        * Exemplo de sobescrita de escopo
        * Reference: https://sequelize.org/master/manual/scopes.html
        */
-      const result = await database.Pessoas.scope('todos').findAll();
+      const result = await service.findAllWithScope(); // Utilizando services
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json(error.message);
@@ -28,7 +30,7 @@ class PessoaController {
   static async view(req, res){
     try {
       const { id } = req.params;
-      const result = await database.Pessoas.findOne({
+      const result = await pessoasServices.findOne({
         where:{
           id: id
         }
@@ -61,7 +63,7 @@ class PessoaController {
   static async create(req, res)
   {
     try {
-      const result = await database.Pessoas.create(req.body);
+      const result = await service.create(req.body);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json(error.message);
