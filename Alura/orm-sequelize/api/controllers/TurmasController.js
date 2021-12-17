@@ -1,6 +1,9 @@
 const database = require("../models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
+
   index: async (req, res) => {
     try {
       const result = await database.Turmas.findAll();
@@ -9,6 +12,31 @@ module.exports = {
       return res.status(500).json(error.message);
     }
   },
+
+  /**
+   * Exemplo utilizando query string para
+   * filtrar turmas por data em conjutando ao operador
+   * do sequelize
+   */
+  indexFilterDate: async (req, res) => {
+    try {
+      const { data_inicial, data_final } = req.query;
+      const where = {};
+      console.log(data_inicial, data_final);
+
+      (data_inicial || data_final ? where.data_inicio = {} : null);
+      (data_inicial ? where.data_inicio[Op.gte] = data_inicial : null);
+      (data_final ? where.data_inicio[Op.lte] = data_final : null);
+
+      console.log(where);
+
+      const result = await database.Turmas.findAll({ where });
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  },
+
 
   view: async (req, res) => {
     try {
@@ -118,6 +146,51 @@ module.exports = {
       return res.status(500).json(error.message);
     }
   },
+
+  /**
+   * Busca com agregação
+   */
+  totalMatriculasPorTurmas: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const result = await database.Matriculas.findAndCountAll({
+        where: {
+          turma_id: id,
+          status: 'ativo'
+        },
+        limit: 20,
+        order: [
+          ['aluno_id', 'DESC']
+        ]
+      });
+      return res.status(200).json(result.count);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  },
+
+  /**
+   * Busca turmas lotadas
+   * utilizando agrupamento
+   */
+   turmasLotadas: async (req, res) => {
+    try {
+      const max_matriculas_turma = 2;
+      const result = await database.Matriculas.findAndCountAll({
+        where: {
+          status: 'ativo'
+        },
+        attributes: ['turma_id'],
+        group: ['turma_id'],
+        having: Sequelize.literal(`count(turma_id) >= ${max_matriculas_turma}`)
+      });
+      return res.status(200).json(result.count);
+    } catch (error) {
+      return res.status(500).json(error.message);
+    }
+  },
+
+
 
   incluirAluno: async (req, res) => {
     try {

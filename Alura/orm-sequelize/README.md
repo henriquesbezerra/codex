@@ -36,12 +36,16 @@ e facilidade de desenvolvimento.
   - [x] escopo padrão
   - [x] sobreescrita de escopo
   - Sequelize DOC Reference: https://sequelize.org/master/manual/scopes.html
-- [ ] Escopos de associação & Mixins
+- [x] Escopos de associação & Mixins
   - Sequelize DOC Reference: https://sequelize.org/master/manual/association-scopes.html
 - [x] Validação de dados pela model
   - Sequelize DOC Reference: https://sequelize.org/master/manual/validations-and-constraints.html
-- [] Busca de turmas abertas por intervalo de data
-- [] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
+- [x] Busca de turmas abertas por intervalo de data
+  - [x] Query Strings
+  - [x] Operadores SQL
+    - Sequelize DOC Reference: https://sequelize.org/master/manual/model-querying-basics.html#operators
+- [x] Filtrar e Enumerar registros com métodos finders, Agrupamento de registros com group, passar sql para dentro do sequelize com Sequelize.literal
+- [ ] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
 
 <br/>
 
