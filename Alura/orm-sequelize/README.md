@@ -46,6 +46,7 @@ e facilidade de desenvolvimento.
     - Sequelize DOC Reference: https://sequelize.org/master/manual/model-querying-basics.html#operators
 - [x] Filtrar e Enumerar registros com métodos finders, Agrupamento de registros com group, passar sql para dentro do sequelize com Sequelize.literal
 - [ ] O cancelamento de cadastro de um estudante deverá cancelar todas as suas matriculas
+  - Sequelize DOC Reference: https://sequelize.org/master/manual/transactions
 
 <br/>
 
