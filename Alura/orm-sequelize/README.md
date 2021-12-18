@@ -1,7 +1,5 @@
 ## orm-sequilse
 
-*Readme em construção......*
-
 API para um cursinho de inglês fictício que utiliza o ORM Sequelize que abstrai
 consultas SQL no banco de dados para métodos Javascript, assim aumentando a produtividade
 e facilidade de desenvolvimento.
