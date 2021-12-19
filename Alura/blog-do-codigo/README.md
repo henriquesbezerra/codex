@@ -4,6 +4,31 @@ API de um blog simples para uso no curso `Node.js e JWT: autenticação com toke
 esse repositório utiliza como base o projeto criado pelo time da Alura para o curso 
 e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-codigo
 
+### Parte 1: Node.js e JWT: Autenticação com tokens
+- [] Problemas de segurança
+- [] Funções de hashing (ou funções de espalhamento)
+  > 
+
+- [] Autenticação sem sessões com tokens
+- [] JSON Web Token
+
+
+***Mais sobre Funções hashing***
+<details>
+  <p>
+    Existe diversas opções de funções de hashing, vamos ver por exemplo o MD5 e SHA-256, porém essas duas funções possuem um problema por serem muito rápidas, um atacante(hacker) tem a possibilidade de gerar ~50milhões de hashes/s com essas funções de hash, então ele pode fazer uma tabela com senhas e o valor hash da senha, ele irá pegar uma lista de senhas mais comuns liberadas todo ano pela internet e para cada uma dessas senhas ele faz uma permutação nos caracteres, e com isso consegue expandir a lista com outras possíveis senhas e gerar uma tabela com maiores possibilidades de desvendar a senha de usuários de uma base de dados, daí pegando uma base de dados de usuários furtada que tem as senhas hash salvas, ele poderá através de comparação de hashs, descobrir qual a senha gerou a senha hash. Além desse método o atacante pode utilizar uma estrutura de dados avançada chamada 'rainbow table', onde é possível guardas as mesmas informações da senha e da senha hash gerada ocupando menos espaço, esse é um tipo de ataque muito comum que podem fazer nossas senhas serem expostas e é conhecido como 'Rainbow Table Attack'. 
+  </p>
+  <p>
+    Para previnir esse tipo de ataque fazemos uma modicação na função hash para receber 'string pseudo-aleatória de uso único' ou SALT, assim essa função de hash modificada vai receber a senha e o SALT e vai combinar os dois na geração da senha hash. Com isso o atacante teria que fazer para cada possível SALT uma tabela, o que torna inviável o rainbow table attack, porém isso ainda não torna impossível a descoberta da senha caso o atacante tenha acesso ao banco de dados, ainda é possível, apesar de muito lento, utilizar o método anterior para gerar possíveis senhas para aplicar o hash.
+  </p>
+  <p>
+    A Solução desse problema é utilizar uma outra função de hash, mais específica para esse caso que irá que além de receber a senha, irá receber um valor de custo que determina o quão lento a função irá demorar para executar, assim é possível controlar a velocidade de execução do algoritmo com base no poder computacional da época, pois quanto mais o custo, mais essa função irá demorar para executar e conforme o tempo passa e o poder de processamento evolui, será necessário apenas aumentar o valor do custo que a aplicação se manterá segura. No projeto vamos utilizar uma função de hash (BCRYPT.HASH) em que o SALT é gerado automáticamente, nos livrando dessa preocupação.
+  </p>
+</details>
+
+
+<br />
+
 **Packages utilizados**
 
 - express: ^4.17.1
@@ -14,4 +39,5 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
   > *Banco de dados relacional que dispensa uso de servidor, armazenando os dados em documentos dentro de sua própria estrutura. - https://www.npmjs.com/package/sqlite3
 - nodemon: ^2.0.15
   > nodemon é uma ferramenta que ajuda a desenvolver aplicativos baseados em node.js reiniciando automaticamente o aplicativo quando mudanças nos arquivos do diretório são detectadas.
-
+- bcrypt: ^3.0.8"
+  > bcrypt é uma função de hashing de senhas. - https://www.npmjs.com/package/bcrypt
