@@ -1,5 +1,18 @@
+const jwt = require('jsonwebtoken');
+
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError, InternalServerError } = require('../erros');
+
+
+const criaTokenJWT = (usuario) =>{
+  // Criamos o payload
+  const payload = {
+    id: usuario.id
+  };
+
+  return jwt.sign(payload, process.env.KEY_JWT);
+
+}
 
 module.exports = {
   adiciona: async (req, res) => {
@@ -25,6 +38,19 @@ module.exports = {
         res.status(500).json({ erro: erro.message });
       }
     }
+  },
+
+  login: async (req, res) =>{
+    // a propriedade user é inserida na requisicao pelo middleware autenticate quando é finlizado
+    const token = criaTokenJWT(req.user);
+
+    /**
+     * É recomendado retornar o token da autenticacao
+     * dentro do cabecaçalho da requisição no campo Authorization
+     * e não no corpo da requisição
+     */
+    res.set('Authorization', token);
+    res.status(204).send();
   },
 
   lista: async (req, res) => {

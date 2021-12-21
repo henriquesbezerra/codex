@@ -6,9 +6,12 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 
 ### Parte 1: Node.js e JWT: Autenticação com tokens
 - [] Problemas de segurança
-- [] Funções de hashing (ou funções de espalhamento)
-  > 
-
+- [x] Funções de hashing (ou funções de espalhamento)
+  - [x] o problema em senhas hash com md5 e sha-256
+    - [x] Ataque Rainbow Table
+  - [x] Criação de senhas hash com bcrypt
+    - [x] Ataque DoS
+- [x] Login por sessões
 - [] Autenticação sem sessões com tokens
 - [] JSON Web Token
 
@@ -41,3 +44,11 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
   > nodemon é uma ferramenta que ajuda a desenvolver aplicativos baseados em node.js reiniciando automaticamente o aplicativo quando mudanças nos arquivos do diretório são detectadas.
 - bcrypt: ^3.0.8"
   > bcrypt é uma função de hashing de senhas. - https://www.npmjs.com/package/bcrypt
+- passport: ^0.5.2
+  > Middleware de autenticação compativel com o Express, que tem o propósito de prover autenticação para requisições - https://www.npmjs.com/package/passport
+- passport-local: ^1.0.0
+  > Estratégia de autenticação para o Passport que utiliza um usuário e senha - https://www.npmjs.com/package/passport-local
+- jsonwebtoken: ^8.5.1
+  > Implementação de [Json Web Token](https://datatracker.ietf.org/doc/html/rfc7519)- https://www.npmjs.com/package/jsonwebtoken
+- dotenv: ^10.0.0
+  > *Dotenv é um módulo con zero dependências que carrega variáveis de ambiente de um arquivo .env para process.env. A configuração de armazenamento no ambiente separada do código é baseada na metodologia da 'The Twelve-Factor App'.* - https://www.npmjs.com/package/dotenv
