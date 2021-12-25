@@ -5,16 +5,19 @@ esse repositório utiliza como base o projeto criado pelo time da Alura para o c
 e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-codigo
 
 ### Parte 1: Node.js e JWT: Autenticação com tokens
-- [] Problemas de segurança
 - [x] Funções de hashing (ou funções de espalhamento)
   - [x] o problema em senhas hash com md5 e sha-256
     - [x] Ataque Rainbow Table
   - [x] Criação de senhas hash com bcrypt
     - [x] Ataque DoS
 - [x] Login por sessões
-- [] Autenticação sem sessões com tokens
-- [] JSON Web Token
-
+- [x] Autenticação sem sessões com tokens
+- [x] JSON Web Token
+- [x] Informações sensiveis em variáveis de ambiente
+- [x] Tratando erros de autenticacao
+- [x] Logout em autenticação com tokens
+- [x] Expirando tokens
+- [ ] Uso de Redis para black list de tokens de logout com validade vigente
 
 ***Mais sobre Funções hashing***
 <details>
@@ -48,7 +51,12 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
   > Middleware de autenticação compativel com o Express, que tem o propósito de prover autenticação para requisições - https://www.npmjs.com/package/passport
 - passport-local: ^1.0.0
   > Estratégia de autenticação para o Passport que utiliza um usuário e senha - https://www.npmjs.com/package/passport-local
+- passport-http-bearer: ^1.0.1
+  > Estratégoa de autenticação HTTP para o bearer token. Possibilita autenticação em requisições HTTP utilizando Bearer Tokens em aplicações Node.js, como especificado pelo RFC 6750. - https://www.npmjs.com/package/passport-http-bearer
 - jsonwebtoken: ^8.5.1
   > Implementação de [Json Web Token](https://datatracker.ietf.org/doc/html/rfc7519)- https://www.npmjs.com/package/jsonwebtoken
 - dotenv: ^10.0.0
   > *Dotenv é um módulo con zero dependências que carrega variáveis de ambiente de um arquivo .env para process.env. A configuração de armazenamento no ambiente separada do código é baseada na metodologia da 'The Twelve-Factor App'.* - https://www.npmjs.com/package/dotenv
+
+
+  ***Necessita Node.js v12.22.4***

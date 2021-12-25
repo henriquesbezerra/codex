@@ -9,34 +9,18 @@ Courses & Projects
 ---------------------------------
 
 * Alura
-  - Formação Node.js com Express:
-  - > **Curso(s):** Rest com NodeJS: API com Express e MySQL
-    </br>
-    **Projeto:** [api-petshop](https://github.com/henriquesbezerra/codex/tree/master/Alura/api-petshop)
-  
-  - > **Curso(s):** NodeJS: Streaming de dados e Repositório
-    </br>
-    **Projeto:** [node-data-stream](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-data-stream)
-  
-  - > **Curso(s):** NodeJS: Crie uma API REST padronizada e escalável,NodeJS: Avançando em APIs REST com controle de versões
-    <br/>
-    **Projeto:** [node-with-express](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-with-express)
-  
-  - > **Curso(s):** ORM com NodeJS: API com Sequelize e MySQL, ORM com NodeJS: Avançando nas funcionalidades do Sequelize
-    </br>
-    **Projeto:** [orm-sequelize](https://github.com/henriquesbezerra/codex/tree/master/Alura/orm-sequelize)
-
-  - > **Curso(s):** Node.js e JWT: Autenticação com tokens
-    </br>
-    **Projeto:** --
-    
-  - > :construction:
-
+  - **Formação Node.js com Express**:
+  - Rest com NodeJS: API com Express e MySQL - [api-petshop](https://github.com/henriquesbezerra/codex/tree/master/Alura/api-petshop)
+  - NodeJS: Streaming de dados e Repositório - [node-data-stream](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-data-stream)  
+  - NodeJS: Crie uma API REST padronizada e escalável,NodeJS: Avançando em APIs REST com controle de versões - [node-with-express](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-with-express)  
+  - ORM com NodeJS: API com Sequelize e MySQL, ORM com NodeJS: Avançando nas funcionalidades do Sequelize - [orm-sequelize](https://github.com/henriquesbezerra/codex/tree/master/Alura/orm-sequelize)
+  - Node.js e JWT: Autenticação com tokens - :construction:
+  - 
 * CS50-2021
-  - > :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
+  - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
 
 * RocketSeat
-  - > :construction: [RocketSeat](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)
+  - :construction: [RocketSeat](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)
 
 <br />
 

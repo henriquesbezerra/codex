@@ -5,6 +5,9 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const BearerStrategy = require('passport-http-bearer').Strategy;
+const jwt = require('jsonwebtoken');
+
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError } = require('../erros');
 
@@ -35,8 +38,25 @@ const funcaoVerificacao = async (email, senha, done) => {
   }
 }
 
+/**
+ * Validacao de email e senha para o login
+ */
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'senha',
   session: false
 }, funcaoVerificacao))
+
+/**
+ * Validação do JWT
+ */
+
+passport.use(new BearerStrategy( async (token, done)=>{
+  try {
+    const payload = jwt.verify(token, process.env.KEY_JWT);    
+    const usuario = await Usuario.buscaPorId(payload.id);
+    done(null, usuario);
+  } catch (error) {
+    done(error);
+  }
+}));

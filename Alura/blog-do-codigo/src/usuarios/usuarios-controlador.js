@@ -10,7 +10,9 @@ const criaTokenJWT = (usuario) =>{
     id: usuario.id
   };
 
-  return jwt.sign(payload, process.env.KEY_JWT);
+  return jwt.sign(payload, process.env.KEY_JWT, {
+    expiresIn: '15m'
+  } );
 
 }
 
