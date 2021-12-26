@@ -19,6 +19,11 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 - [x] Expirando tokens
 - [x] Uso de Redis para blacklist de tokens de logout com validade vigente
 
+### Parte 2: Refresh Tokens e confirmação de cadastro
+- [ ] Envio de emails
+- [ ] Verificação de emails
+- [ ] Atualização de tokens de autenticação
+
 ***Mais sobre Funções hashing***
 <details>
   <p>
