@@ -11,6 +11,10 @@
 ```bash 
     gcc {nome_do_arquivo_fonte}.c ./lib_cs50/cs50.c -o {nome_arquivo_destino}
 ```
+  Também é possível fazer a compilacao utiliza a flag -l{nome_da_lib}
+```bash 
+    gcc {nome_do_arquivo_fonte}.c -o {nome_arquivo_destino} -lcs50
+``` 
 > 5. Esse arquivo README.md possuirá apenas referências aos tópicos do curso. Não irá apresentar o conteúdo completo do curso.
 
 

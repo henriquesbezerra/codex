@@ -2,6 +2,7 @@
     "files.associations": {
         "*.module": "php",
         ".env": "dotenv",
-        "cs50.h": "c"
+        "cs50.h": "c",
+        "math.h": "c"
     }
 }
