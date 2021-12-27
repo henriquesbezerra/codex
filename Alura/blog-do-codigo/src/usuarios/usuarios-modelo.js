@@ -18,7 +18,7 @@ class Usuario {
       throw new InvalidArgumentError('O usuário já existe!');
     }
 
-    return usuariosDao.adiciona(this);
+    return usuariosDao.adiciona2(this);
   }
 
   async adicionaSenha(senha){
