@@ -20,6 +20,7 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 - [x] Uso de Redis para blacklist de tokens de logout com validade vigente
 
 ### Parte 2: Refresh Tokens e confirmação de cadastro
+- [ ] Estratégia de logout em api com tokens - [saiba mais](https://github.com/henriquesbezerra/codex/blob/master/Alura/blog-do-codigo/about-token-usage.md)
 - [ ] Envio de emails para desenvolvimento e para produção
 - [ ] Verificação de emails no cadastro
 - [ ] Atualização de tokens de autenticação expirados (refresh token)
