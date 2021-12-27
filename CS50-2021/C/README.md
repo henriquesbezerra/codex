@@ -102,3 +102,206 @@ Seu código funciona conforme prescrito quando você insere:
 0.01 (ou outros números positivos)?
 letras ou palavras?
 nenhuma entrada, quando você apenas pressiona Enter?
+
+
+### Exercício 4: Crédito (Desafio) - Algoritmo de Luhn
+
+Um cartão de crédito (ou débito), é claro, é um cartão de plástico com o qual você pode pagar por bens e serviços. Impresso nesse cartão está um número que também é armazenado em um banco de dados em algum lugar, de modo que, quando o cartão for usado para comprar algo, o credor saiba a quem cobrar. Há muitas pessoas com cartões de crédito no mundo, então esses números são bem longos: American Express usa números de 15 dígitos, MasterCard usa números de 16 dígitos e Visa usa números de 13 e 16 dígitos. E esses são números decimais (0 a 9), não binários, o que significa, por exemplo, que a American Express poderia imprimir até 10 ^ 15 = 1.000.000.000.000.000 de cartões exclusivos! (Isso é, hum, um quatrilhão.)
+
+Na verdade, isso é um pouco exagerado, porque os números de cartão de crédito têm alguma estrutura. Todos os números **American Express começam com 34 ou 37; a maioria dos números do MasterCard começa com 51, 52, 53,** 54 ou 55 (eles também têm alguns outros números iniciais potenciais com os quais não nos preocupamos neste problema); e todos os números **Visa começam com 4.** Mas os números de cartão de crédito também têm um “checksum” embutido, uma relação matemática entre pelo menos um número e outros. Essa soma de verificação permite que os computadores (ou humanos que gostam de matemática) detectem erros de digitação (por exemplo, transposições), se não números fraudulentos, sem ter que consultar um banco de dados, que pode ser lento. É claro que um matemático desonesto certamente poderia criar um número falso que, no entanto, respeite a restrição matemática, portanto, uma pesquisa no banco de dados ainda é necessária para verificações mais rigorosas.
+
+#### O Algoritmo de Luhn
+
+Então, qual é a fórmula secreta? Bem, a maioria dos cartões usa um algoritmo inventado por Hans Peter Luhn, da IBM. De acordo com o algoritmo de Luhn, você pode determinar se um número de cartão de crédito é (sintaticamente) válido da seguinte maneira:
+  
+  1. Multiplique cada segundo digito por 2, começando com o penúltimo dígito do número e, em seguida, some os dígitos desses produtos.
+  2. Adicione essa soma à soma dos dígitos que não foram multiplicados por 2.
+  3. Se o último dígito do total for 0 (ou, mais formalmente, se o módulo total 10 for congruente com 0), o número é válido!
+  
+  Isso é meio confuso, então vamos tentar um exemplo com o cartão Visa do David: 4003600000000014.
+  
+**1- Para fins de discussão, vamos primeiro destacar todos os outros dígitos, começando com o penúltimo dígito do número:**
+
+**<u>4</u>** 0 **<u>0</u>** 3 **<u>6</u>** 0 **<u>0</u>** 0 **<u>0</u>** 0 **<u>0</u>** 0 **<u>0</u>** 0 **<u>1</u>** 4
+
+
+Ok, vamos multiplicar cada um dos dígitos sublinhados por 2:
+
+```javascript
+1 * 2 + 0 * 2 + 0 * 2 + 0 * 2 + 0 * 2 + 6 * 2 + 0 * 2 + 4 * 2
+```
+
+Isso nos dá:
+```javascript
+2 + 0 + 0 + 0 + 0 + 12 + 0 + 8
+```
+Agora vamos adicionar(somar) os dígitos desses produtos (ou seja, não os próprios produtos):
+```javascript
+2 + 0 + 0 + 0 + 0 + 1 + 2 + 0 + 8 = 13
+```
+**2 - Agora vamos adicionar essa soma (13) à soma dos dígitos que não foram multiplicados por 2 (começando do final):**
+
+13 + 4 + 0 + 0 + 0 + 0 + 0 + 3 + 0 = 20
+
+**3- Sim, o último dígito dessa soma (20) é 0, então o cartão de David é legítimo!** 
+
+Portanto, validar números de cartão de crédito não é difícil, mas se torna um pouco tedioso manualmente. Vamos escrever um programa.
+
+**Detalhes de Implementação**
+
+Em um arquivo chamado credit.c, escreva um programa que solicite ao usuário um número de cartão de crédito e, em seguida, informe (via printf ) se é um número de cartão American Express, MasterCard ou Visa válido , de acordo com as definições de formato de cada um neste documento. Para que possamos automatizar alguns testes do seu código, pedimos que a última linha de saída do seu programa seja **AMEX\n** ou **MASTERCARD\n** ou **VISA\n** ou **INVALID\n**, nada mais, nada menos. Para simplificar, você pode assumir que o input do usuário será inteiramente numérica (ou seja, sem hífens, como pode ser impresso em um cartão real). Mas não presuma que o input do usuário caberá em um int ! Melhor usar get_long da biblioteca do CS50 para obter o input dos usuários. (Por que?)
+
+Considere o seguinte exemplo de como seu próprio programa deve se comportar quando um número de cartão de crédito válido é fornecido (sem hífens).
+```
+$ ./credit
+Número: 4003600000000014
+VISA
+```
+Agora, get_long em si rejeitará hífens (e mais) de qualquer maneira:
+
+```
+$ ./credit
+Número: 4003-6000-0000-0014
+Número: foo
+Número: 4003600000000014
+VISA
+```
+
+Mas depende de você pegar entradas que não sejam números de cartão de crédito (por exemplo, um número de telefone), mesmo que sejam numéricos:
+```
+$ ./credit
+Número: 6176292929
+INVALID
+```
+Teste seu programa com um monte de entradas, válidas e inválidas. (Certamente o faremos!) Aqui estão alguns números de cartão que o PayPal recomenda para teste.
+
+Se o seu programa se comporta incorretamente com alguns inputs(ou não compila), é hora de depurar!
+
+**Como testar seu código no IDE do CS50?**
+
+Execute o seguinte para avaliar se seu código está correto usando **check50**. Mas certifique-se de compilar e testar você mesmo!
+```
+check50 cs50/problems/2021/x/credit
+```
+Execute o seguinte para avaliar o style do seu código usando style50.style50 credit.c
+
+<br />
+<br />
+
+## Laboratório 1: crescimento populacional
+
+Determine quanto tempo leva para uma população atingir um determinado tamanho.
+
+```
+$ ./population
+Start size: 100
+End size: 200
+Years: 9
+```
+
+### Background
+Digamos que temos uma população de n lhamas. A cada ano, nascem n/3 novas lhamas e n/4 morrem.
+
+Por exemplo, se começarmos com n = 1.200 lhamas, no primeiro ano, 1.200 / 3 = 400 novas lhamas nascerão e 1.200 / 4 = 300 lhamas morrerão. No final daquele ano, teríamos 1.200 + 400 - 300 = 1.300 lhamas.
+
+Para tentar outro exemplo, se começarmos com n = 1000 lhamas, no final do ano teremos 1000/3 = 333,33 novas lhamas. Não podemos ter uma parte decimal de uma lhama, entretanto, vamos truncar o decimal para que 333 novas lhamas nasçam. 1000/4 = 250 lhamas passarão, então terminaremos com um total de 1000 + 333 - 250 = 1083 lhamas no final do ano.
+
+**Começando**
+Copie o “código de distribuição” (ou seja, código inicial) a seguir em um novo arquivo em seu IDE chamado population.c .
+```
+#include
+#include
+
+int main(void)
+{
+      // TODO: Solicite o valor inicial ao usuário
+
+     // TODO: Solicite o valor final ao usuário
+
+     // TODO: Calcule o número de anos até o limite
+
+     // TODO: Imprima o número de anos
+
+}
+```
+
+### Detalhes de Implementação
+Conclua a implementação de population.c , de forma que calcule o número de anos necessários para que a população cresça do tamanho inicial ao tamanho final.
+
+Seu programa deve primeiro solicitar ao usuário um tamanho inicial da população.
+
+Se o usuário inserir um número menor que 9 (o tamanho mínimo permitido da população), o usuário deve ser solicitado novamente a inserir um tamanho inicial da população até inserir um número maior ou igual a 9. (Se começarmos com menos de 9 lhamas, a população de lhamas ficará estagnada rapidamente!)
+
+Seu programa deve então solicitar ao usuário o tamanho final da população.
+
+Se o usuário inserir um número menor que o tamanho da população inicial, ele deverá ser solicitado novamente a inserir um tamanho da população final até inserir um número que seja maior ou igual ao tamanho da população inicial. (Afinal, queremos que a população de lhamas cresça!)
+
+Seu programa deve então calcular o número (inteiro) de anos necessários para que a população atinja pelo menos o tamanho do valor final.
+
+Finalmente, seu programa deve imprimir o número de anos necessários para que a população de lhama alcance esse tamanho final, como ao imprimir no terminal Years: n , onde n é o número de anos.
+
+**Dicas**
+
+Se você deseja solicitar repetidamente ao usuário o valor de uma variável até que alguma condição seja atendida, você pode usar um loop do ... while. Por exemplo, recupere o seguinte código da palestra, que avisa o usuário repetidamente até que ele insira um número inteiro positivo.
+
+```
+int n;
+do
+{
+ n = get_int("Inteiro positivo: ");
+}
+while (n < 1);
+```
+
+Como você pode adaptar este código para garantir um tamanho inicial de pelo menos 9, alem de um tamanho final que seja pelo menos o tamanho inicial?
+
+Para declarar uma nova variável, certifique-se de especificar seu tipo de dado, um nome para a variável e (opcionalmente) qual deve ser seu valor inicial.
+
+Por exemplo, você pode querer criar uma variável para controlar quantos anos se passaram.
+
+Para calcular quantos anos a população levará para atingir o tamanho final, outro ciclo pode ser útil! Dentro do loop, você provavelmente desejará atualizar o tamanho da população de acordo com a fórmula em Background e atualizar o número de anos que se passaram.
+
+Para imprimir um inteiro n no terminal, lembre-se de que você pode usar uma linha de código como
+
+```
+printf("O número é %i\n", n);
+```
+
+para especificar que a variável n deve ser preenchida para o espaço reservado %i .
+
+**Como testar seu código**
+
+Seu código deve resolver os seguintes casos de teste:
+
+```
+$ ./population
+Start size: 1200
+End size: 1300
+Years: 1
+```
+
+```
+$ ./population
+Start size: -5
+Start size: 3
+Start size: 9
+End size: 5
+End size: 18
+Years: 8
+```
+
+```
+$ ./population
+Start size: 20
+End size: 1
+End size: 10
+End size: 100
+Years: 20
+```
+
+```
+$ ./population
+Start size: 100
+End size: 1000000
+Years: 115
+```
