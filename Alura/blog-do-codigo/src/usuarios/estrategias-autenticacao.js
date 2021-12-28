@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError } = require('../erros');
 
-const manipulaBlacklist = require('../../redis/manipula-blacklist');
+const manipulaBlacklist = require('../../redis/blocklist-access-token');
 
 /**
  * O objetivo da função de verificação é validar as credenciais do usário
@@ -56,8 +56,7 @@ passport.use(new LocalStrategy({
 passport.use(new BearerStrategy( async (token, done)=>{
   try {
     
-    const result = await manipulaBlacklist.contemToken(token);    
-   console.log('aqui', result);
+    const result = await manipulaBlacklist.contemToken(token);
     
     if(result){
       throw new jwt.JsonWebTokenError('Token inválido pro logout!');   
@@ -65,6 +64,7 @@ passport.use(new BearerStrategy( async (token, done)=>{
 
     const payload = jwt.verify(token, process.env.KEY_JWT);    
     const usuario = await Usuario.buscaPorId(payload.id);
+    
     done(null, usuario, {
       token: token
     });

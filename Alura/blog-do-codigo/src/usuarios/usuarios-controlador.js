@@ -1,6 +1,10 @@
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const moment = require('moment');
 
-const blacklist = require('../../redis/manipula-blacklist');
+const blacklist = require('../../redis/blocklist-access-token');
+const allowListRefreshToken = require('../../redis/allowlist-refresh-token');
+
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError, InternalServerError } = require('../erros');
 
@@ -14,7 +18,13 @@ const criaTokenJWT = (usuario) =>{
   return jwt.sign(payload, process.env.KEY_JWT, {
     expiresIn: '15m'
   } );
+}
 
+async function criaTokenOpaco(usuario){
+  const tokenOpaco = crypto.randomBytes(24).toString('hex');
+  const dataExpiracao = moment().add(5, 'd').unix();
+  await allowListRefreshToken.adiciona(tokenOpaco, usuario.id, dataExpiracao);
+  return tokenOpaco;
 }
 
 module.exports = {
@@ -45,15 +55,16 @@ module.exports = {
 
   async login(req, res){
     // a propriedade user é inserida na requisicao pelo middleware autenticate quando é finlizado
-    const token = criaTokenJWT(req.user);
+    const accessToken = criaTokenJWT(req.user);
+    const refreshToken = await criaTokenOpaco(req.user);
 
     /**
      * É recomendado retornar o token da autenticacao
      * dentro do cabecaçalho da requisição no campo Authorization
      * e não no corpo da requisição
      */
-    res.set('Authorization', token);
-    res.status(204).send();
+    res.set('Authorization', accessToken);
+    res.status(200).send({ refreshToken });
   },
 
   async logout(req, res) {
