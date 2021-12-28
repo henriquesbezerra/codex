@@ -6,12 +6,12 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
-const jwt = require('jsonwebtoken');
+
+const tokens = require('./tokens');
 
 const Usuario = require('./usuarios-modelo');
 const { InvalidArgumentError } = require('../erros');
 
-const manipulaBlacklist = require('../../redis/blocklist-access-token');
 
 /**
  * O objetivo da função de verificação é validar as credenciais do usário
@@ -28,7 +28,7 @@ const funcaoVerificacao = async (email, senha, done) => {
     } 
 
     // Verifica a senha hash
-    const  senhaValida = await bcrypt.compare(senha, usuario.senhaHash);
+    const senhaValida = await bcrypt.compare(senha, usuario.senhaHash);
     if(!senhaValida){
       throw new InvalidArgumentError('Email ou senha inválidos');
     }
@@ -52,18 +52,10 @@ passport.use(new LocalStrategy({
 /**
  * Validação do JWT
  */
-
 passport.use(new BearerStrategy( async (token, done)=>{
   try {
-    
-    const result = await manipulaBlacklist.contemToken(token);
-    
-    if(result){
-      throw new jwt.JsonWebTokenError('Token inválido pro logout!');   
-    }
-
-    const payload = jwt.verify(token, process.env.KEY_JWT);    
-    const usuario = await Usuario.buscaPorId(payload.id);
+    const id = await tokens.access.verifica(token);     
+    const usuario = await Usuario.buscaPorId(id);
     
     done(null, usuario, {
       token: token

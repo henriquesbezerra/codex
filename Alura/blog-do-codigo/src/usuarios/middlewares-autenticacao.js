@@ -3,26 +3,9 @@
  * com funções callback customizadas para as regras de negócio
  */
 const passport = require('passport');
-const { InvalidArgumentError } = require('../erros');
 const Usuario = require('./usuarios-modelo');
-const allowListRefreshToken = require('../../redis/allowlist-refresh-token');
 
-async function verificaRefreshToken(refreshToken){
-  if(!refreshToken){
-    throw new InvalidArgumentError('Refresh Token não informado!');
-  }
-
-  const userId = await allowListRefreshToken.contemChave(refreshToken);  
-  if(!userId){
-    throw new InvalidArgumentError('Refresh Token inválido!');
-  }
-
-  return userId;
-}
-
-async function invalidaRefreshToken(refreshToken){
-  await allowListRefreshToken.deleta(refreshToken);
-}
+const tokens = require('./tokens');
 
 module.exports = {
   /** Middleware de autenticacao para estratégia local */
@@ -80,9 +63,11 @@ module.exports = {
   async refresh(req, res, next){
     try {    
       const { refreshToken } = req.body;
-      const userId = await verificaRefreshToken(refreshToken);
-      await invalidaRefreshToken(refreshToken);
+      const userId = await tokens.refresh.verifica(refreshToken);
+   
+      await tokens.refresh.invalida(refreshToken);
       req.user = await Usuario.buscaPorId(userId);
+
       return next();
     } catch (error) {
         if(error.name === 'InvalidArgumentError'){
