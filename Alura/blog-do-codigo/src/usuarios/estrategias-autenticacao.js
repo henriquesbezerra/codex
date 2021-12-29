@@ -56,7 +56,7 @@ passport.use(new BearerStrategy( async (token, done)=>{
   try {
     const id = await tokens.access.verifica(token);     
     const usuario = await Usuario.buscaPorId(id);
-    
+    console.log(`Estratégia Autenticacao: ${id}`, usuario);
     done(null, usuario, {
       token: token
     });

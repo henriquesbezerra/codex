@@ -47,7 +47,9 @@ class Usuario {
   }
   
   static async buscaPorId(id) {
+    console.log(`Usuarios Modelo: ${id}`);
     const usuario = await usuariosDao.buscaPorId(id);
+    console.log(`Usuario encontrado:`, usuario);
     if (!usuario) {
       return null;
     }

@@ -23,7 +23,7 @@ module.exports = {
       if(!usuario){
         return res.status(401).json();
       }
-
+      console.log(`Middleware Autenticacao: `, usuario);
 
       req.user = usuario;
       return next();
@@ -64,7 +64,7 @@ module.exports = {
     try {    
       const { refreshToken } = req.body;
       const userId = await tokens.refresh.verifica(refreshToken);
-   
+      console.log(`Middleware Autenticacao: ${userId}`);
       await tokens.refresh.invalida(refreshToken);
       req.user = await Usuario.buscaPorId(userId);
 

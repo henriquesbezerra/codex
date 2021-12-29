@@ -46,11 +46,13 @@ async function verificaTokenOpaco(token, nome, lista){
     throw new InvalidArgumentError(`${nome} não informado!`);
   }
 
-  const userId = await lista.contemChave(token);  
+  const verificaToken = await lista.contemChave(token);  
 
-  if(!userId){
+  if(!verificaToken){
     throw new InvalidArgumentError(`${nome} inválido!`);
   }
+
+  const userId = await lista.buscaValor(token);
   
   return userId;
 }
@@ -62,7 +64,7 @@ async function invalidaTokenOpaco(token, allowlist){
 module.exports = {
   access: {
     nome: 'Access token',
-    expiracao: [15, 'm'],
+    expiracao: [2, 's'],
     lista: blocklistAccessToken,
     
     cria(id){
