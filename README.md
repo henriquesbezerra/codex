@@ -14,7 +14,7 @@ Courses & Projects
   - NodeJS: Streaming de dados e Repositório - [node-data-stream](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-data-stream)  
   - NodeJS: Crie uma API REST padronizada e escalável,NodeJS: Avançando em APIs REST com controle de versões - [node-with-express](https://github.com/henriquesbezerra/codex/tree/master/Alura/node-with-express)  
   - ORM com NodeJS: API com Sequelize e MySQL, ORM com NodeJS: Avançando nas funcionalidades do Sequelize - [orm-sequelize](https://github.com/henriquesbezerra/codex/tree/master/Alura/orm-sequelize)
-  - Node.js e JWT: Autenticação com tokens - :construction:
+  - Node.js e JWT: Autenticação com tokens - :construction: [blog-do-codigo](https://github.com/henriquesbezerra/codex/tree/master/Alura/blog-do-codigo)
   - 
 * CS50-2021
   - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
