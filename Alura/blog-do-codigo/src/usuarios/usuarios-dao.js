@@ -24,10 +24,11 @@ module.exports = {
           INSERT INTO usuarios (
             nome,
             email,
-            senhaHash
-          ) VALUES (?, ?, ?)
+            senhaHash,
+            emailVerificado
+          ) VALUES (?, ?, ?, ?)
         `,
-        [usuario.nome, usuario.email, usuario.senhaHash],
+        [usuario.nome, usuario.email, usuario.senhaHash, usuario.emailVerificado],
         erro => {
           if (erro) {
             reject(new InternalServerError('Erro ao adicionar o usuário!'));
@@ -45,11 +46,22 @@ module.exports = {
   async adiciona2(usuario){
     try {
       await dbRun(
-        `INSERT INTO usuarios (nome, email, senhaHash) VALUES (?, ?, ?)`,
-        [usuario.nome, usuario.email, usuario.senhaHash]
+        `INSERT INTO usuarios (nome, email, senhaHash, emailVerificado) VALUES (?, ?, ?, ?)`,
+        [usuario.nome, usuario.email, usuario.senhaHash, usuario.emailVerificado]
       );
     } catch (error) {
       throw new InternalServerError('Erro ao adicionar o usuário!');
+    }
+  },
+
+  async modificaEmailVerificado(usuarioId, emailVerificado){
+    try {
+      await dbRun(
+        `UPDATE usuarios  SET emailVerificado = ? WHERE id = ?`,
+        [emailVerificado, usuarioId]
+      );
+    } catch (error) {
+      throw new InternalServerError('Erro ao verificar email do usuário!');
     }
   },
 

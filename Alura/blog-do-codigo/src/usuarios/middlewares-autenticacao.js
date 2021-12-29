@@ -76,5 +76,28 @@ module.exports = {
           return res.status(500).json({ erro: error.message });
         }
     }
+  },
+
+  async verificacaoEmail(req, res, next){
+    try {
+      const { token } = req.params;
+      const id = await tokens.verificacaoEmail.verifica(token);
+      const usuario = await Usuario.buscaPorId(id);
+      req.user = usuario;
+      return next();
+    } catch (error) {
+
+      if(erro && erro.name === 'InvalidArgumenetError'){
+        return res.status(401).json({erro: erro.message});
+      }
+    
+      if(erro && erro.name === 'TokenExpiredError'){
+        return res.status(401).json({
+          erro: erro.message,
+          expiradoEm: erro.expiredAt
+        });
+      } 
+      return res.status(500).json({ erro: error.message });
+    }
   }
 };

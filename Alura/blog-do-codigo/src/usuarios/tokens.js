@@ -17,12 +17,14 @@ async function criaTokenJWT(id, [tempoQtd, tempoUnd]){
 }
 
 async function verificaTokenJwt(token, nome, blocklist){
-  const result = await blocklist.contemToken(token);
-    
-  if(result){
-    throw new jwt.JsonWebTokenError(`${nome} inválido pro logout!`);   
-  }
 
+  if(blocklist){
+    const result = await blocklist.contemToken(token);
+    if(result){
+      throw new jwt.JsonWebTokenError(`${nome} inválido pro logout!`);   
+    }  
+  }    
+  
   const { id } = jwt.verify(token, process.env.KEY_JWT);  
   return id;
 }
@@ -93,5 +95,19 @@ module.exports = {
     invalida(token){
       return invalidaTokenOpaco(token, this.lista);
     }
+  },
+
+  verificacaoEmail: {
+    nome: 'Token de verificação de e-mail',
+    expiracao: [1, 'h'],
+        
+    cria(id){
+      return criaTokenJWT(id, this.expiracao);
+    },
+
+    verifica(token){
+      return verificaTokenJwt(token, this.nome);
+    },
+
   }
 }

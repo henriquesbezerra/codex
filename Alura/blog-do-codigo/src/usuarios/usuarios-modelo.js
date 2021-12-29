@@ -9,8 +9,14 @@ class Usuario {
     this.nome = usuario.nome;
     this.email = usuario.email;
     this.senhaHash = usuario.senhaHash;
+    this.emailVerificado = usuario.emailVerificado;
 
     this.valida();
+  }
+
+  async verificaEmail(){
+    this.emailVerificado =  true;
+    await usuariosDao.modificaEmailVerificado(this.id, this.emailVerificado);
   }
 
   async adiciona() {
@@ -18,7 +24,9 @@ class Usuario {
       throw new InvalidArgumentError('O usuário já existe!');
     }
 
-    return usuariosDao.adiciona2(this);
+    await usuariosDao.adiciona2(this);
+    const { id } = await usuariosDao.buscaPorEmail(this.email);
+    this.id = id;
   }
 
   async adicionaSenha(senha){

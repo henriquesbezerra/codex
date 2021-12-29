@@ -20,10 +20,10 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 - [x] Uso de Redis para blacklist de tokens de logout com validade vigente
 
 ### Parte 2: Refresh Tokens e confirmação de cadastro
-- [ ] Estratégia de logout em api com tokens - [saiba mais](https://github.com/henriquesbezerra/codex/blob/master/Alura/blog-do-codigo/about-token-usage.md)
-- [ ] Envio de emails para desenvolvimento e para produção
-- [ ] Verificação de emails no cadastro
-- [ ] Atualização de tokens de autenticação expirados (refresh token)
+- [x] Estratégia de logout em api com tokens - [saiba mais](https://github.com/henriquesbezerra/codex/blob/master/Alura/blog-do-codigo/about-token-usage.md)
+- [x] Envio de emails para desenvolvimento e para produção
+- [x] Verificação de emails no cadastro
+- [x] Atualização de tokens de autenticação expirados (refresh token)
 
 ***Mais sobre Funções hashing***
 <details>
@@ -65,6 +65,7 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
   > *Dotenv é um módulo con zero dependências que carrega variáveis de ambiente de um arquivo .env para process.env. A configuração de armazenamento no ambiente separada do código é baseada na metodologia da 'The Twelve-Factor App'.* - https://www.npmjs.com/package/dotenv
 - redis: 3.0.2
   > *Cliente Redis de alta performance para node.js.* - https://www.npmjs.com/package/redis
-
+- nodemailer: 6.4.8
+  > *Lib para envio de emails.* Send e-mails from Node.js – easy as cake! 🍰✉️ - https://www.npmjs.com/package/nodemailer
 
   ***Necessita Node.js v12.22.4***
