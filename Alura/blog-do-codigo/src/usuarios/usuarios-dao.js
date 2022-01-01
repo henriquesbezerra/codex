@@ -46,8 +46,8 @@ module.exports = {
   async adiciona2(usuario){
     try {
       await dbRun(
-        `INSERT INTO usuarios (nome, email, senhaHash, emailVerificado) VALUES (?, ?, ?, ?)`,
-        [usuario.nome, usuario.email, usuario.senhaHash, usuario.emailVerificado]
+        `INSERT INTO usuarios (nome, email, senhaHash, emailVerificado, cargo) VALUES (?, ?, ?, ?, ?)`,
+        [usuario.nome, usuario.email, usuario.senhaHash, usuario.emailVerificado, usuario.cargo]
       );
     } catch (error) {
       throw new InternalServerError('Erro ao adicionar o usuário!');

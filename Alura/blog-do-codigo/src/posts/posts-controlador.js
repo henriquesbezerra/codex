@@ -4,6 +4,7 @@ const { InvalidArgumentError, InternalServerError } = require('../erros');
 module.exports = {
   adiciona: async (req, res) => {
     try {
+      req.body.autor = req.user.id;
       const post = new Post(req.body);
       await post.adiciona();
       
@@ -23,6 +24,16 @@ module.exports = {
     try {
       const posts = await Post.lista();
       res.send(posts);
+    } catch (erro) {
+      return res.status(500).json({ erro: erro });
+    }
+  },
+
+  deleta: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Post.deleta(id);
+      res.status(204).json();
     } catch (erro) {
       return res.status(500).json({ erro: erro });
     }

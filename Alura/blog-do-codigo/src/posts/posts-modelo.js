@@ -5,6 +5,7 @@ class Post {
   constructor(post) {
     this.titulo = post.titulo;
     this.conteudo = post.conteudo;
+    this.autor = post.autor;
     this.valida();
   }
 
@@ -18,6 +19,10 @@ class Post {
 
     validacoes.campoStringNaoNulo(this.conteudo, 'conteúdo');
     validacoes.campoTamanhoMaximo(this.conteudo, 'conteúdo', 140);
+  }
+
+  static deleta(id){
+    postsDao.delete(id);
   }
 
   static lista() {

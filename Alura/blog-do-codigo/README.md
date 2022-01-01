@@ -25,6 +25,14 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 - [x] Verificação de emails no cadastro
 - [x] Atualização de tokens de autenticação expirados (refresh token)
 
+
+### Parte 3: Controle de acesso e autorização com RBAC
+- [ ] Controle de acesso baseado em cargos
+- [ ] Política de controle de acesso
+- [ ] Template Methods
+- [ ] Serialização
+- [ ] Refatoração e boas práticas  
+
 ***Mais sobre Funções hashing***
 <details>
   <p>
@@ -67,5 +75,8 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
   > *Cliente Redis de alta performance para node.js.* - https://www.npmjs.com/package/redis
 - nodemailer: 6.4.8
   > *Lib para envio de emails.* Send e-mails from Node.js – easy as cake! 🍰✉️ - https://www.npmjs.com/package/nodemailer
-
-  ***Necessita Node.js v12.22.4***
+- accesscontrol: ^2.2.1
+  > *Controle de acesso* baseado em cargos para Node.js - https://www.npmjs.com/package/accesscontrol
+  
+  
+***Necessita Node.js v12.22.4***

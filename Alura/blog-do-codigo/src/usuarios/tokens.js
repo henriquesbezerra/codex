@@ -64,7 +64,7 @@ async function invalidaTokenOpaco(token, allowlist){
 module.exports = {
   access: {
     nome: 'Access token',
-    expiracao: [2, 's'],
+    expiracao: [15, 'm'],
     lista: blocklistAccessToken,
     
     cria(id){

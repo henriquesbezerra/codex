@@ -10,6 +10,7 @@ class Usuario {
     this.email = usuario.email;
     this.senhaHash = usuario.senhaHash;
     this.emailVerificado = usuario.emailVerificado;
+    this.cargo = usuario.cargo;
 
     this.valida();
   }
@@ -39,6 +40,10 @@ class Usuario {
   valida() {
     validacoes.campoStringNaoNulo(this.nome, 'nome');
     validacoes.campoStringNaoNulo(this.email, 'email');
+    validacoes.campoStringNaoNulo(this.cargo, 'cargo');
+    if(!['admin','editor','assinante'].includes(this.cargo)){
+      throw new InvalidArgumentError('O Campo cargo está inválido!');
+    }
   }
 
   

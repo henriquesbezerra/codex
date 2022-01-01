@@ -10,8 +10,8 @@ module.exports = {
   async adiciona(post){
     try {
       await dbRun(
-        `INSERT INTO posts (titulo, conteudo ) VALUES (?, ?)`,
-        [post.titulo, post.conteudo]
+        `INSERT INTO posts (titulo, conteudo, autor ) VALUES (?, ?, ?)`,
+        [post.titulo, post.conteudo, post.autor]
       );
     } catch (error) {
       throw new InternalServerError('Erro ao adicionar o post!');
@@ -25,4 +25,12 @@ module.exports = {
       throw new InternalServerError('Erro ao listar os posts!');
     }
   },
+
+  async delete(id){
+    try {
+      return await dbRun(`DELETE FROM posts WHERE id = ?`, [id]);
+    } catch (error) {
+      throw new InternalServerError('Erro ao deleter post!');
+    }
+  }
 };
