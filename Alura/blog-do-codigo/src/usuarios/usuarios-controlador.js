@@ -75,7 +75,7 @@ module.exports = {
   async verificaEmail(req, res){
     try {
       const usuario = req.user;    
-      console.log(usuario);
+      // console.log(usuario);
       await usuario.verificaEmail();
       res.status(204).send({message: 'Verificado com sucesso'});
     } catch (error) {

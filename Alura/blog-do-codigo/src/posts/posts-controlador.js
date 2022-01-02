@@ -22,7 +22,12 @@ module.exports = {
 
   lista: async (req, res) => {
     try {
-      const posts = await Post.lista();
+      let posts = await Post.lista();
+
+      if(!req.estaAutenticado){
+        posts = posts.map(post => ({ titulo: post.titulo, conteudo: post.conteudo }));
+      }
+
       res.send(posts);
     } catch (erro) {
       return res.status(500).json({ erro: erro });
@@ -34,6 +39,35 @@ module.exports = {
       const { id } = req.params;
       await Post.deleta(id);
       res.status(204).json();
+    } catch (erro) {
+      return res.status(500).json({ erro: erro });
+    }
+  },
+
+  remover: async (req, res) => {
+    try {
+      let post;
+      
+      if(req.acesso.todos.permitido){
+        post = await Post.buscaPorId(req.params.id);
+      }else if(req.acesso.apenasSeu.permitido){
+        post = await Post.buscaPorIdAutor(req.params.id, req.user.id);
+      }
+      
+      await Post.deleta(post.id);
+            
+      res.status(204).json();
+    } catch (erro) {
+      return res.status(500).json({ erro: erro });
+    }
+
+  },
+
+  detalhes: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const post = await Post.detalhes(id);
+      res.status(200).json(post);
     } catch (erro) {
       return res.status(500).json({ erro: erro });
     }

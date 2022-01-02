@@ -1,14 +1,25 @@
 const postsControlador = require('./posts-controlador');
 const { middlewaresAutenticacao } = require('../usuarios');
 const autorizacao = require('../middlewares/autorizacao');
+const tentarAutenticar = require('../middlewares/tentarAutenticar');
+const tentarAutorizar = require('../middlewares/tentarAutorizar');
 
 module.exports = app => {
   app
     .route('/post')
-    .get(postsControlador.lista)
-    .post(middlewaresAutenticacao.bearer, postsControlador.adiciona);
+    .get( [ tentarAutenticar, tentarAutorizar('post', 'ler') ], postsControlador.lista)
+    .post([
+      middlewaresAutenticacao.bearer,
+      autorizacao('post', 'criar')
+    ], postsControlador.adiciona);
 
   app.route('/post/:id')
-    .delete([ middlewaresAutenticacao.bearer,  autorizacao(['admin', 'editor']) ],
-    postsControlador.deleta);
+    .get(
+      [middlewaresAutenticacao.bearer,  autorizacao('post', 'ler')], 
+      postsControlador.detalhes
+    )
+    .delete(
+      [ middlewaresAutenticacao.bearer,  autorizacao('post', 'remover') ],
+      postsControlador.remover
+    );
 };

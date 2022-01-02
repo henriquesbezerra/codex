@@ -3,6 +3,7 @@ const validacoes = require('../validacoes-comuns');
 
 class Post {
   constructor(post) {
+    this.id = post.id;
     this.titulo = post.titulo;
     this.conteudo = post.conteudo;
     this.autor = post.autor;
@@ -24,6 +25,36 @@ class Post {
   static deleta(id){
     postsDao.delete(id);
   }
+
+  static async detalhes(id){
+    const post = await postsDao.detalhes(id);
+    if(!post){
+      return null;
+    }
+
+    return new Post(post);
+  }
+
+  static async buscaPorId(id){
+    const post = await postsDao.detalhes(id);
+
+    if(!post){
+      return null;
+    }
+    
+    return new Post(post);
+  }
+
+  static async buscaPorIdAutor(id, autor){
+    const post = await postsDao.buscaPorIdAutor(id, autor);
+
+    if(!post){
+      return null;
+    }
+
+    return new Post(post);
+  }
+
 
   static lista() {
     return postsDao.lista();
