@@ -1,9 +1,9 @@
 const tokens = require('./tokens');
 
-const { EmailVerificacao } = require('./emails');
+const { EmailVerificacao, RedefinirSenha } = require('./emails');
 
 const Usuario = require('./usuarios-modelo');
-const { InvalidArgumentError, InternalServerError } = require('../erros');
+const { InvalidArgumentError, InternalServerError, EntityNotFound } = require('../erros');
 
 
 function geraEndereco(rota, token){  
@@ -33,17 +33,7 @@ module.exports = {
       
       res.status(201).json();
     } catch (erro) {
-
       next(erro);
-
-      // if (erro instanceof InvalidArgumentError) {
-      //   res.status(422).json({ erro: erro.message });
-      // } else if (erro instanceof InternalServerError) {
-      //   res.status(500).json({ erro: erro.message });
-      // } else {
-      //   res.status(500).json({ erro: erro.message });
-      // }
-
     }
   },
 
@@ -82,8 +72,7 @@ module.exports = {
 
   async verificaEmail(req, res, next){
     try {
-      const usuario = req.user;    
-      // console.log(usuario);
+      const usuario = new Usuario(req.user);    
       await usuario.verificaEmail();
       res.status(204).send({message: 'Verificado com sucesso'});
     } catch (error) {
@@ -99,5 +88,55 @@ module.exports = {
     } catch (erro) {
       next(erro);
     }
-  }
+  },
+
+  async esquecisenha(req, res, next){
+    const respostaMessage = {
+      message: 'Enviaremos para esse email as instruções de redefinição de senha'
+    };
+    try {
+      const usuario = await Usuario.buscaPorEmail(req.body.email);
+      
+      const token = await tokens.redefinirSenha.cria(usuario.id);
+      const endereco = geraEndereco('/usuario/redefinir-senha/', token);    
+      const email = new RedefinirSenha(usuario, endereco);
+      email.enviaEmail().catch(console.log);
+
+      res.status(200).send(respostaMessage);
+
+    } catch (erro) {
+      if(erro instanceof EntityNotFound){
+        res.send(respostaMessage);
+        return;
+      }    
+      next(erro);
+    }
+  },
+
+  async redefinirSenha (req, res, next) {
+    
+    const { senha, confirmacao  } = req.body;
+
+    try {
+      const usuario = new Usuario(req.user);
+
+      if(senha !== confirmacao){
+        res.status(500).send('Senhas não conferem');
+      }
+
+      await usuario.adicionaSenha(senha);
+
+      await usuario.atualizaSenha();
+
+      const token = await tokens.verificacaoEmail.cria(usuario.id);
+      const endereco = geraEndereco('/usuario/verificaemail/', token);
+      const emailVerificacao =  new EmailVerificacao(usuario, endereco);
+      emailVerificacao.enviaEmail().catch(console.log);
+      
+      res.status(201).json();
+    } catch (erro) {
+      next(erro);
+    }
+    
+  },
 };

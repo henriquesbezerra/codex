@@ -53,6 +53,22 @@ class EmailVerificacao extends Email{
   
 }
 
+
+class RedefinirSenha extends Email{
+  
+  constructor(usuario, endereco){
+    super();
+    this.from = '"Blog do Código" <noreply@blogodocodico.com.br>';
+    this.to = usuario.email;
+    this.subject = 'Recuperação de senha';
+    this.text = `Olá! Clique aqui e redefina sua senha: ${endereco}`;
+    this.html = `<h1>Olá!</h1> Clique aqui e redefina sua senha: 
+      <a href="${endereco}" target="_blank">${endereco}</a>`;
+  }
+  
+}
+
 module.exports = {
-  EmailVerificacao
+  EmailVerificacao,
+  RedefinirSenha
 };

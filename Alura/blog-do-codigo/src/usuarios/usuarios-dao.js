@@ -54,6 +54,17 @@ module.exports = {
     }
   },
 
+  async atualizaSenha(usuario){
+    try {
+      await dbRun(
+        `UPDATE usuarios SET senhaHash = ? WHERE id = ?`,
+        [usuario.senhaHash, usuario.id]
+      );
+    } catch (error) {
+      throw new InternalServerError('Erro ao atualizar a senha do usuário!');
+    }
+  },
+
   async modificaEmailVerificado(usuarioId, emailVerificado){
     try {
       await dbRun(

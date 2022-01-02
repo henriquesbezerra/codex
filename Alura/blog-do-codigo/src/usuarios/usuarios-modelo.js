@@ -30,6 +30,16 @@ class Usuario {
     this.id = id;
   }
 
+  async atualizaSenha() {
+    if (!await usuariosDao.buscaPorEmail(this.email)) {
+      throw new InvalidArgumentError('O usuário não existe!');
+    }
+
+   await usuariosDao.atualizaSenha(this);   
+   const { id } = await usuariosDao.buscaPorEmail(this.email);
+   this.id = id;
+  }
+
   async adicionaSenha(senha){
     validacoes.campoStringNaoNulo(senha, 'senha');
     validacoes.campoTamanhoMinimo(senha, 'senha', 8);

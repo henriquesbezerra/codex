@@ -5,6 +5,7 @@ const moment = require('moment');
 const { InvalidArgumentError, InternalServerError } = require('../erros');
 const allowListRefreshToken = require('../../redis/allowlist-refresh-token');
 const blocklistAccessToken = require('../../redis/blocklist-access-token');
+const resetPassToken = require('../../redis/resetpass-token');
 
 async function criaTokenJWT(id, [tempoQtd, tempoUnd]){
   return jwt.sign(
@@ -110,6 +111,23 @@ module.exports = {
     verifica(token){
       return verificaTokenJwt(token, this.nome);
     },
+  },
 
+  redefinirSenha: {
+    nome: 'Token de redefinição de senha',
+    expiracao: [2, 'h'],
+    lista: resetPassToken,
+
+    cria(id){
+      return criaTokenOpaco(id, this.expiracao, this.lista)
+    },
+
+    verifica(token){
+      return verificaTokenOpaco(token, this.nome, this.lista);
+    },
+
+    invalida(token){
+      return invalidaTokenOpaco(token, this.lista);
+    }
   }
 }

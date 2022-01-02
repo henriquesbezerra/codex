@@ -75,5 +75,23 @@ module.exports = {
     } catch (error) {
       next(error);
     }
-  }
+  },
+
+  async verificaTokenReset(req, res, next){
+    try {    
+      const { token } = req.params;
+      const userId = await tokens.redefinirSenha.verifica(token);
+    
+      await tokens.redefinirSenha.invalida(token);
+      req.user = await Usuario.buscaPorId(userId);
+
+      return next();
+    } catch (error) {
+        if(error.name === 'InvalidArgumentError'){
+          return res.status(401).json({ erro: error.message });
+        }else{
+          return res.status(500).json({ erro: error.message });
+        }
+    }
+  },
 };
