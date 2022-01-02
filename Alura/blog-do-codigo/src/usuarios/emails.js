@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 
 const configuracaoEmailTeste = (contaTeste) => ({
   host: 'smtp.ethereal.email',
-  auth: contaTest
+  auth: contaTeste
 });
 
 async function criaConfiguracaoEmail(){

@@ -1,5 +1,5 @@
 const usuariosDao = require('./usuarios-dao');
-const { InvalidArgumentError } = require('../erros');
+const { InvalidArgumentError, EntityNotFound } = require('../erros');
 const validacoes = require('../validacoes-comuns');
 const bcrypt = require('bcrypt');
 
@@ -21,7 +21,7 @@ class Usuario {
   }
 
   async adiciona() {
-    if (await Usuario.buscaPorEmail(this.email)) {
+    if (await usuariosDao.buscaPorEmail(this.email)) {
       throw new InvalidArgumentError('O usuário já existe!');
     }
 
@@ -56,7 +56,7 @@ class Usuario {
     const usuario = await usuariosDao.buscaPorId(id);
     //console.log(`Usuario encontrado:`, usuario);
     if (!usuario) {
-      return null;
+      throw new EntityNotFound('Usuario');
     }
     
     return new Usuario(usuario);
@@ -65,7 +65,7 @@ class Usuario {
   static async buscaPorEmail(email) {
     const usuario = await usuariosDao.buscaPorEmail(email);
     if (!usuario) {
-      return null;
+      throw new EntityNotFound('Usuario');
     }
     
     return new Usuario(usuario);

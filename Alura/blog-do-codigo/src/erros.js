@@ -12,7 +12,15 @@ class InternalServerError extends Error {
   }
 }
 
+class EntityNotFound extends Error {
+  constructor(entity) {    
+    this.name = 'NotFound';
+    this.message = `Não foi possível encontrar ${entity}`;
+  }
+}
+
 module.exports = {
   InvalidArgumentError: InvalidArgumentError,
-  InternalServerError: InternalServerError
+  InternalServerError: InternalServerError,
+  EntityNotFound
 };
