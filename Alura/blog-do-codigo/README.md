@@ -27,11 +27,11 @@ e pode ser encontrado no repositório: https://github.com/alura-cursos/blog-do-c
 
 
 ### Parte 3: Controle de acesso e autorização com RBAC
-- [ ] Controle de acesso baseado em cargos
-- [ ] Política de controle de acesso
-- [ ] Template Methods
-- [ ] Serialização
-- [ ] Refatoração e boas práticas  
+- [x] Controle de acesso baseado em cargos
+- [x] Política de controle de acesso
+- [x] Template Methods
+- [x] Serialização
+- [x] Refatoração e boas práticas  
 
 ***Mais sobre Funções hashing***
 <details>
