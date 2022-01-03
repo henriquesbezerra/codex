@@ -32,3 +32,7 @@ Courses & Projects
 Languages Training
 ---------------------------------
 * [Rust](https://github.com/henriquesbezerra/codex/tree/master/Rust)
+
+Links de Referência
+---------------------------------
+* [Design Patterns](https://refactoring.guru/pt-br/design-patterns)
