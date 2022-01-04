@@ -1,0 +1,56 @@
+Arguments: 
+  /Users/henri/.nvm/versions/node/v14.0.0/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js install
+
+PATH: 
+  /Users/henri/.gem/ruby/2.6.3p62/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home/bin:/Users/henri/.zinit/polaris/bin:/Users/henri/.nvm/versions/node/v14.0.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/henri/Library/Android/sdk/emulator:/Users/henri/Library/Android/sdk/tools:/Users/henri/Library/Android/sdk/tools/bin:/Users/henri/Library/Android/sdk/platform-tools:/Users/henri/.rvm/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.0.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/henri/Projects/codex/Alura/graphql-apollo/package.json: Unexpected token , in JSON at position 141
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "roteiro",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "nodemon ./api/index.js",,
+      "fake-json-server": "json-server --watch api/data/dados.json",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/alura-cursos/1922-graphql.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/alura-cursos/1922-graphql/issues"
+    },
+    "homepage": "https://github.com/alura-cursos/1922-graphql#readme",
+    "dependencies": {
+      "json-server": "^0.16.1",
+      "nodemon": "^2.0.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

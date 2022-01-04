@@ -19,7 +19,9 @@ Courses & Projects
     - Parte 2: Node.js: Refresh Tokens e confirmação de cadastro
     - Parte 3: Node.js: Controle de acesso e autorização com RBAC
     - Repo: [blog-do-codigo](https://github.com/henriquesbezerra/codex/tree/master/Alura/blog-do-codigo)
-
+  
+  - **GraphQL**:
+  - GraphQL: Construindo uma API com Apollo Server - :construction: [grahpql-apollo](https://github.com/henriquesbezerra/codex/tree/master/Alura/graphql-apollo)
 
 * CS50-2021
   - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
