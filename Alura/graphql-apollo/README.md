@@ -74,10 +74,10 @@ Para entender como essa linguagem funciona, sempre temos que ter em mente que o 
   ```
   - No exemplo, temos uma Mutation chamada ```adicionaLivro``` que recebe por parâmetro os dados necessários.
 
-- **Enumm**
-- **Input**
-- **Interface**
-- **Union**
+- **Enumm**: é uma enumeração, um tipo de dado abstrato, cujos valores são atribuídos a exatamente um elemento de um conjunto finito de identificadores escolhidos pelo programador.
+- **Input**: Tipo de dados para pré determinar os possíveis campos de entrada de dados numa Query ou Mutation.
+- **Interface**: É um tipo abstrato, não utilizado diretamente no schema, mas usamos como base para criar outros tipos.
+- **Union**: Tipo que faz união entre dois objetos.
 
 ## Introspecção ou Instrospection
 Ferramenta do GraphQL que permite visualizar os tipos e queries disponíveis em uma API. É uma forma de fazer consultas que retornam informações sobre a própria API.
