@@ -2,6 +2,24 @@
 
 API graphql com apollo server para uma escola de inglês.
 
+### Parte 1: GraphQL: Construindo uma API com Apollo Server
+- [x] O que é GraphQL e suas características
+- [x] Tipos básicos
+- [x] Instrospecção
+- [x] Boas Práticas
+- [x] CRUD de Usuário com Mutation e Query
+- [x] Tipo Scalar Customizado
+- [x] Tipo Interface
+
+### Parte 2: GraphQL: Integração de dados e relacionamentos
+- [x] Adicionar e integrar schemas
+  - [x] schemas de turmas
+- [x] Implementação de resolvers
+- [x] CRUD GraphQL com Sqlite
+- [ ] Diferentes fontes de dados
+- [ ] Relacionar entidades pelo schema
+- [ ] Otimizações
+
 **O que é GraphQL?**
 Graphql é uma especificação para criar e utilizar APIs que possuem sua própria linguagem de query.
 
@@ -154,6 +172,10 @@ Como referência para conhecer mais possibilidades podemos visitar esse [POST](h
   > Implementação em javascript do GraphQL, uma linguagem de query para APIs criada pelo facebook - https://www.npmjs.com/package/graphql
 - apollo-server: ^3.6.1
   > GraphQL Server mantido pela comunidade. Funciona com vários server frameworks para Node.js ou apenas com o express - https://www.npmjs.com/package/apollo-server
+- sqlite3: ^4.1.1
+  > *Banco de dados relacional que dispensa uso de servidor, armazenando os dados em documentos dentro de sua própria estrutura. - https://www.npmjs.com/package/sqlite3
+- datasource-sql: ^1.6.0
+  > *Implementação da biblioteca knex.js para uso fácil com datasource no apollo-server* - https://www.npmjs.com/package/datasource-sql
 
 **Requisitos**
 - NODE 14.10.1
