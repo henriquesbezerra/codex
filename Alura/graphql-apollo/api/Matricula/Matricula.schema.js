@@ -13,6 +13,8 @@ scalar DateTime
 
   type Mutation{
     addMatricula(estudante: ID!, turma: ID!): DefaultResponse!
+    deleteMatricula(id: ID!): DefaultResponse!
+    cancelaMatricula(id: ID!): DefaultResponse!
   }
 `;
 

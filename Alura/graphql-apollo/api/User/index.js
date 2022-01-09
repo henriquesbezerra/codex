@@ -1,5 +1,5 @@
 module.exports = {
-  UserSchema: require('./schema'),
-  UserResolver: require('./resolvers'),
-  UserDataSource: require('./datasource'),
+  UserSchema: require('./User.schema'),
+  UserResolver: require('./User.resolvers'),
+  UserDataSource: require('./User.datasource'),
 };

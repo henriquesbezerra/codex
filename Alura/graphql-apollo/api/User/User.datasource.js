@@ -14,18 +14,19 @@ class UsersAPI extends RESTDataSource {
   async getUsers(){
     const users =  await this.get('/users');    
     const result = users.map(async (user)=>{
-      return{
-        ...user,
-        role: await this.get(`/roles/${user.role}`)
-      }
+      return { ...user }
     });
     return result;
   }
 
   async getUserById(id){
     const user = await this.get(`/users/${id}`);
-    const role = await this.get(`/roles/${user.role}`);
-    return { ...user, role: role};
+    return { ...user };
+  }
+
+  async getRoleById(id){
+    const role = await this.get(`/roles/${id}`);
+    return { ...role };
   }
 
   async addUser(data){

@@ -47,7 +47,12 @@ const userResolvers = {
     matriculas: (root, args, { dataSources }, info) =>{
       return dataSources.matriculasAPI.getMatriculasByUser(root.id);
     },
+    role: (root, args, { dataSources }, info) =>{
+      console.log(dataSources.usersAPI.getRoleById);
+      return dataSources.usersAPI.getRoleById(root.role);
+    },
   }
 };
+
 
 module.exports = userResolvers;

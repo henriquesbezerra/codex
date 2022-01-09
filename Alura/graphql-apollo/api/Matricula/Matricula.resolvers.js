@@ -19,6 +19,12 @@ module.exports = {
   Mutation:{
     addMatricula: (root, args, { dataSources }, info) =>{
       return dataSources.matriculasAPI.addMatricula(args);
+    },
+    deleteMatricula: (root, args, { dataSources }, info) =>{
+      return dataSources.matriculasAPI.deleteMatricula(args.id);
+    },
+    cancelaMatricula: (root, args, { dataSources }, info) =>{
+      return dataSources.matriculasAPI.cancelaMatricula(args.id);
     }
   },
   Matricula: {
