@@ -4,24 +4,25 @@ const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-serve
 
 const { mergeTypeDefs } = require('@graphql-tools/merge');
 
-const UserDataSource = require('./user/User.datasource');
-const UserSchema = require('./user/User.schema');
-const UserResolvers = require('./user/User.resolvers');
+const CommonSchemas = require('./CommonSchemas');
 
-const TurmaSchema = require('./Turma/Turma.schema');
-const TurmaResolvers = require('./Turma/Turma.resolvers');
-const TurmaDataSource = require('./Turma/Turma.datasource');
+const { UserSchema, UserDataSource, UserResolver }= require('./User');
+const { TurmaSchema, TurmaResolver, TurmaDataSource }= require('./Turma');
+const { MatriculaSchema, MatriculaDataSource, MatriculaResolver } = require('./Matricula');
 
 const db = require('./sqlite3/database');
 
 const typeDefs = mergeTypeDefs([
+  CommonSchemas,
   UserSchema,
-  TurmaSchema
+  TurmaSchema,
+  MatriculaSchema
 ]);
 
 const resolvers = [
-  UserResolvers,
-  TurmaResolvers
+  UserResolver,
+  TurmaResolver,
+  MatriculaResolver
 ];
 
 const dbConfig = {
@@ -38,7 +39,8 @@ const server = new ApolloServer({
   dataSources: ()=>{
     return {
       usersAPI: new UserDataSource(),
-      turmasAPI: new TurmaDataSource(dbConfig)
+      turmasAPI: new TurmaDataSource(dbConfig),
+      matriculasAPI: new MatriculaDataSource(dbConfig)
     }
   },
   plugins: [

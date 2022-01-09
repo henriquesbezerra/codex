@@ -42,6 +42,11 @@ const userResolvers = {
     deleteUser: (root, args, {dataSources}, info)=>{
       return dataSources.usersAPI.deleteUser(args.id);
     },
+  },
+  User: {
+    matriculas: (root, args, { dataSources }, info) =>{
+      return dataSources.matriculasAPI.getMatriculasByUser(root.id);
+    },
   }
 };
 

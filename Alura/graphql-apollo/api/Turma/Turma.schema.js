@@ -1,7 +1,7 @@
 const { gql } = require('apollo-server');
 
 const turmaSchema = gql`
-scalar DateTime
+  scalar DateTime
 
   type Turma{
     id: ID!
@@ -10,6 +10,8 @@ scalar DateTime
     vagas: Int
     inicio: DateTime
     docente: User!
+    createdAt: DateTime!
+    matriculas: [Matricula]
   }
 
   input TurmaInput{
@@ -22,13 +24,13 @@ scalar DateTime
 
   type Query{
     turmas: [Turma]
-    turma(id: ID!): Turma
+    getTurma(id: ID!): Turma
   }
 
   type Mutation{
     addTurma(input: TurmaInput): Turma!
     updateTurma(id: ID!, input: TurmaInput): Turma!
-    deleteTurma(id: ID!): deleteResponse!    
+    deleteTurma(id: ID!): DefaultResponse!    
   }
 `;
 

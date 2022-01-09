@@ -22,6 +22,7 @@ const userSchema = gql`
     email: String
     role: Role!
     createdAt: DateTime
+    matriculas: [Matricula]
   }
 
   input UserInput{
@@ -40,25 +41,11 @@ const userSchema = gql`
 
   type Mutation{
     addUser(input: UserInput): User!
-    updateUser(id: ID!, input: UserInput): updateUserResponse!
-    deleteUser(id: ID!): deleteResponse!
+    updateUser(id: ID!, input: UserInput): UpdateUserResponse!
+    deleteUser(id: ID!): DefaultResponse!
   }
 
-  interface customResponse {
-    code: Int!
-    message: String!
-  }
-
-  type deleteResponse implements customResponse{
-    code: Int!
-    message: String!
-  }
-
-  type updateUserResponse implements customResponse{
-    code: Int!
-    message: String!
-    user: User!
-  }
+  
 `;
 
 module.exports = userSchema;

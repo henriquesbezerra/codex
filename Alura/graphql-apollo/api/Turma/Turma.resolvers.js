@@ -12,7 +12,7 @@ const turmaResolvers = {
     turmas: (root, args, { dataSources }, info) =>{
       return dataSources.turmasAPI.getTurmas();
     },
-    turma: (root, args, { dataSources }, info) =>{
+    getTurma: (root, args, { dataSources }, info) =>{
       return dataSources.turmasAPI.getTurma(args.id);
     }
   },
@@ -26,6 +26,14 @@ const turmaResolvers = {
     deleteTurma: (root, args, { dataSources }, info) =>{
       return dataSources.turmasAPI.deleteTurma(args.id);
     }
+  },
+  Turma:{
+    matriculas: (root, args, { dataSources }, info) =>{
+      return dataSources.matriculasAPI.getMatriculasByTurma(root.id);
+    },
+    docente:  (root, args, { dataSources }, info) =>{
+      return dataSources.usersAPI.getUserById(root.docente_id);
+    },
   }
 };
 
