@@ -16,9 +16,10 @@ API graphql com apollo server para uma escola de inglês.
   - [x] schemas de turmas
 - [x] Implementação de resolvers
 - [x] CRUD GraphQL com Sqlite
-- [ ] Diferentes fontes de dados
-- [ ] Relacionar entidades pelo schema
+- [x] Diferentes fontes de dados
+- [x] Relacionar entidades pelo schema
 - [ ] Otimizações
+  - [x] Utilizando a lib dataloader para contornar o problema N + 1
 
 **O que é GraphQL?**
 Graphql é uma especificação para criar e utilizar APIs que possuem sua própria linguagem de query.
@@ -176,6 +177,8 @@ Como referência para conhecer mais possibilidades podemos visitar esse [POST](h
   > *Banco de dados relacional que dispensa uso de servidor, armazenando os dados em documentos dentro de sua própria estrutura. - https://www.npmjs.com/package/sqlite3
 - datasource-sql: ^1.6.0
   > *Implementação da biblioteca knex.js para uso fácil com datasource no apollo-server* - https://www.npmjs.com/package/datasource-sql
+- dataloader: ^2.0.0
+  > Serve como camada para carregar dados do banco de dados com uma única consulta para otimizar as solicitções ao banco causadas pelo problema N+1 - https://www.npmjs.com/package/dataloader
 
 **Requisitos**
 - NODE 14.10.1

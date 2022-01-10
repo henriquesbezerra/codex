@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e js,json,graphgql ./api/index.js",
+    "start": "DEBUG=knex:query nodemon -e js,json,graphgql ./api/index.js",
     "fake-json-server": "json-server --watch api/data/dados.json --port 3003",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
     "apollo-datasource": "^3.3.0",
     "apollo-datasource-rest": "^3.5.0",
     "apollo-server": "^3.6.1",
+    "dataloader": "^2.0.0",
     "datasource-sql": "^1.6.0",
     "graphql": "^16.2.0",
     "graphql-tools": "^8.2.0",

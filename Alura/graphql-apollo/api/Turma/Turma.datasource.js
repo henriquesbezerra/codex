@@ -1,4 +1,5 @@
 const { SQLDataSource } = require('datasource-sql'); 
+const DataLoader = require('dataloader');
 
 class TurmasAPI extends SQLDataSource {
 
@@ -25,6 +26,16 @@ class TurmasAPI extends SQLDataSource {
       });
     return result[0];
   }
+
+  turmasLoader = new DataLoader(async (ids) => {    
+    const result = await this.db
+      .select('*')
+      .from('turmas')
+      .whereIn('id', ids)
+      .select();
+      
+    return ids.map(id => result.find( turma => turma.id === id ) );
+  });  
 
   async addTurma(data){
     const novaTurmaId = await this.db

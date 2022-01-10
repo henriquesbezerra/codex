@@ -31,8 +31,8 @@ module.exports = {
     estudante: (root, args, { dataSources }, info) =>{
       return dataSources.usersAPI.getUserById(root.estudante_id);
     },
-    turma: (root, args, { dataSources }, info) =>{      
-      return dataSources.turmasAPI.getTurma(root.turma_id);
+    turma: (root, args, { dataSources }, info) =>{  
+      return dataSources.turmasAPI.turmasLoader.load(root.turma_id);
     },
   }
 };

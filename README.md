@@ -21,7 +21,9 @@ Courses & Projects
     - Repo: [blog-do-codigo](https://github.com/henriquesbezerra/codex/tree/master/Alura/blog-do-codigo)
   
   - **GraphQL**:
-  - GraphQL: Construindo uma API com Apollo Server - :construction: [grahpql-apollo](https://github.com/henriquesbezerra/codex/tree/master/Alura/graphql-apollo)
+    - Parte 1: GraphQL: Construindo uma API com Apollo Server
+    - Parte 2: GrahpQL: Integração de dados e relacionamentos - :construction:
+    - Repo: [grahpql-apollo](https://github.com/henriquesbezerra/codex/tree/master/Alura/graphql-apollo)
 
 * CS50-2021
   - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
