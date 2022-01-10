@@ -11,10 +11,17 @@ class TurmasAPI extends SQLDataSource {
     }
   }
 
-  async getTurmas(){
+  async getTurmas({ paginator }){
+    const page = paginator?.page || 1;
+    const itensPerPage = paginator?.itensPerPage || Infinity;
+    
+    const firstPage = page === 0 || page === 1 ? 0 : (page *  itensPerPage) -1
+
     return await this.db
       .select('*')
-      .from('turmas');
+      .from('turmas')
+      .offset(firstPage)
+      .limit(itensPerPage);
   }
 
   async getTurma(id){

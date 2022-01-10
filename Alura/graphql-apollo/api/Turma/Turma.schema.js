@@ -23,7 +23,7 @@ const turmaSchema = gql`
   }
 
   type Query{
-    turmas: [Turma]
+    turmas(paginator: Paginator): [Turma]
     getTurma(id: ID!): Turma
   }
 

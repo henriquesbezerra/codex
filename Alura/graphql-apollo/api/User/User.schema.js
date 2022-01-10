@@ -35,7 +35,7 @@ const userSchema = gql`
   }
 
   type Query{
-    users: [User!]!
+    users(paginator: Paginator): [User!]!
     user(id: ID!): User!
   }
 

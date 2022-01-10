@@ -10,7 +10,8 @@ const turmaResolvers = {
   }),
   Query: {
     turmas: (root, args, { dataSources }, info) =>{
-      return dataSources.turmasAPI.getTurmas();
+      console.log(`1231312312`,args);
+      return dataSources.turmasAPI.getTurmas(args);
     },
     getTurma: (root, args, { dataSources }, info) =>{
       return dataSources.turmasAPI.getTurma(args.id);

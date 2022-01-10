@@ -11,8 +11,15 @@ class UsersAPI extends RESTDataSource {
     }
   }
 
-  async getUsers(){
-    const users =  await this.get('/users');    
+  async getUsers({ paginator }){
+    const page = paginator?.page || 1;
+    const itensPerPage = paginator?.itensPerPage || 0;
+    
+    const query = itensPerPage ? 
+      `/users?_page=${page}&_limit=${itensPerPage}` : 
+      `/users?_page=${page}`;
+    
+    const users =  await this.get(query);    
     const result = users.map(async (user)=>{
       return { ...user }
     });

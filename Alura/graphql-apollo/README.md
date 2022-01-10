@@ -18,8 +18,9 @@ API graphql com apollo server para uma escola de inglês.
 - [x] CRUD GraphQL com Sqlite
 - [x] Diferentes fontes de dados
 - [x] Relacionar entidades pelo schema
-- [ ] Otimizações
-  - [x] Utilizando a lib dataloader para contornar o problema N + 1
+- [x] Otimizações utilizando a lib dataloader para contornar o problema N + 1
+- [x] Paginação
+- [x] Usando Operation Names, Alias ou Variables
 
 **O que é GraphQL?**
 Graphql é uma especificação para criar e utilizar APIs que possuem sua própria linguagem de query.

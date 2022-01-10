@@ -18,6 +18,11 @@ const CommonSchemas = gql`
     user: User!
   }
 
+  input Paginator{
+    page: Int
+    itensPerPage: Int
+  }
+
 `;
 
 module.exports = CommonSchemas;
