@@ -8,4 +8,6 @@ Esses projetos podem ser encontrados em:
   - [agenda-petshop-front](https://github.com/juunegreiros/agenda-petshop-front)
 
 ### Parte 3: GraphQL: Integrando com sua aplicação
-- [ ] Criando projeto React
+- [x] Requisição Query GraphQL com fetch
+- [x] Requisição Mutation GraphQL com fetch
+- [x] Usando apollo boost e Query component
