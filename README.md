@@ -25,11 +25,11 @@ Courses & Projects
       - Parte 1: GraphQL: Construindo uma API com Apollo Server
       - Parte 2: GrahpQL: Integração de dados e relacionamentos
       - Repo: [grahpql-apollo](https://github.com/henriquesbezerra/codex/tree/master/Alura/graphql-apollo)
-      - Parte 3: GraphQL: Integrando com sua aplicação - :construction:
+      - Parte 3: GraphQL: Integrando com sua aplicação 
       - Repo: [grahpql-on-client](https://github.com/henriquesbezerra/codex/tree/master/Alura/graphql-on-client)
-  
+    - API GraphQL com Prisma/Nexus e MySQL: [prisma-graphql-nexus](https://github.com/henriquesbezerra/codex/tree/master/Alura/prisma-graphql-nexus) - :construction:
 
-* CS50-2021
+* CS50-2021/2022
   - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
 
 * RocketSeat
