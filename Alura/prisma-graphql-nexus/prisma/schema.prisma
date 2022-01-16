@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  titulo    String   @db.VarChar(255)
+  conteudo  String   @db.Text
+  autorId   Int
+  publicado Boolean  @default(false)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  autor     Users    @relation(fields: [autorId], references: [id], onUpdate: Restrict, map: "posts_ibfk_1")
+
+  @@index([autorId], map: "autorId")
+  @@map("posts")
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  nome      String   @db.VarChar(255)
+  email     String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  posts     Post[]
+
+  @@map("users")
+}
