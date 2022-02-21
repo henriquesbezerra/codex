@@ -9,18 +9,25 @@
 int main(void)
 {
   long card_number = 0;
-  int counter = 0;
-  card_number = get_long("Enters card number: ");
-  printf(" \n %ld \n", (card_number + 1) % 10);
+  long digits = 0;
+  int digits_quantity = 0;
 
-  // while (card_number > 0)
-  // {
-  //   counter += card_number % 10;
-  //   card_number = card_number / 10;
+  /* Pega número do cartão */
+  do
+  {
+    card_number = get_long("Digite os números do cartão (sem caracteres especiais): ");
+  } while (card_number <= 0);
 
-  //   printf(" \n %ld,  %d \n", card_number, counter);
-  // }
+  digits = card_number;
 
-  // printf(" \n %ld,  %d \n", card_number, counter);
+  /* Descobrir o número de digitos */
+  while (digits > 0)
+  {
+    digits = round(digits / 10);
+    digits_quantity++;
+  }
+
+  /* Aplicação do algoritmo de Luhn*/
+
   return 0;
 }

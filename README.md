@@ -39,8 +39,9 @@ Courses & Projects
 * CS50-2021/2022
   - :construction: [cs50-2021](https://github.com/henriquesbezerra/codex/tree/master/CS50-2021)
 
-* RocketSeat
-  - :construction: [RocketSeat](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)
+* [RocketSeat](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)  
+  * [Projetos Next.js:](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)
+    * :construction: [Basics SSR, SSG, ISR](https://github.com/henriquesbezerra/codex/tree/master/Rocketseat)
 
 <br />
 
