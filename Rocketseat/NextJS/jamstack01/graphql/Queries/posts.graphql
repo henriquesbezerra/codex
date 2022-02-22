@@ -1,0 +1,41 @@
+query Posts{
+  posts(orderBy: publishedAt_DESC){
+    slug
+    title
+    excerpt
+    publishedAt
+    content{
+      markdown
+    }
+    coverImage{
+      url(
+        transformation: {
+          image: {
+            resize:{
+              width: 1400,
+              height: 600,
+              fit: crop
+            }
+          }
+        }
+      )
+    }
+    author{
+      name
+      id
+      picture{
+        url(
+          transformation: {
+            image: {
+              resize:{
+                width: 40,
+                height: 40,
+                fit: crop
+              }
+            }
+          }
+        )
+      }
+    }
+  }
+}

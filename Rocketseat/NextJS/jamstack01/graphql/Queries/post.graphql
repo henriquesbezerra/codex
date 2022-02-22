@@ -1,0 +1,30 @@
+query Post($slug: String!){
+  post(
+    where:{
+      slug: $slug
+    }
+  ){
+    slug
+    title
+    excerpt
+    publishedAt
+    content{
+      markdown
+    }
+    coverImage{
+      url(transformation: {
+        image: {
+          resize:{
+            width: 1400,
+            height: 600,
+            fit: crop
+          }
+        }
+      })
+    }
+    seo{
+      title
+      description
+    }
+  }
+}
