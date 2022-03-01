@@ -1,0 +1,89 @@
+{
+  "name": "hello-extensions",
+  "displayName": "hello-extensions",
+  "description": "extension to study vscode extensions api",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.64.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "hello-extensions",
+          "title": "Extensions Posibilities",
+          "icon": "resources/code-solid.svg"
+        }
+      ]
+    },
+    "views": {
+      "hello-extensions": [
+        {
+          "id": "basic-examples",
+          "name": "Exemplos Básicos"
+        },
+        {
+          "id": "intermediary-examples",
+          "name": "Exemplos Intermediários"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "basic-examples.helloWorld",
+        "title": "Notificação informativa Padrão"
+      },
+      {
+        "command": "basic-examples.errorWorld",
+        "title": "Notificação de Erro Padrão"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "basic-examples.helloWorld",
+          "when": "view == basic-examples"
+        },
+        {
+          "command": "basic-examples.helloWorld",
+          "when": "view == basic-examples"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "basic-examples.helloWorld",
+          "when": "view == basic-examples && viewItem == valorContextual",
+          "group": "group@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.64.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.9.0",
+    "glob": "^7.2.0",
+    "mocha": "^9.2.1",
+    "typescript": "^4.5.5",
+    "@vscode/test-electron": "^2.1.2"
+  }
+}
