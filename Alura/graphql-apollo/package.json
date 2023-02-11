@@ -27,9 +27,9 @@
     "datasource-sql": "^1.6.0",
     "graphql": "^16.2.0",
     "graphql-tools": "^8.2.0",
-    "json-server": "^0.16.1",
+    "json-server": "^0.17.1",
     "knex": "^0.95.15",
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.20",
     "sqlite3": "^5.0.2"
   }
 }
