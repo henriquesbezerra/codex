@@ -1,0 +1,17 @@
+// notes.proto
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+service Api{
+  rpc Get (Void) returns (GetResponse);
+}
+
+// Entidades
+message Void {}
+
+// Responses
+message GetResponse{
+  int32 status = 1;
+  repeated google.protobuf.Any data = 2;
+}
