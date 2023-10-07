@@ -70,7 +70,6 @@ use calculator::subtract as subtract;
 use calculator::multiple as multiple;
 use calculator::divide as divide;
 
-
 fn main(){
     // Rust has a concept called type inference, which deduces what is the type of the variable.
     // Because Rust are static typed, we need use correct types or castings to assign values in a variable.
