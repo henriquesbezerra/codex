@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=bun-backend-limpo
+    ports:
+      - "15432:5432"
+    volumes:
+      - ./docker:/var/lib/postgresql/data
+    networks:
+      - postgres-pgadmin-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=root@mail.com.br
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres-pgadmin-network
+
+networks:
+  postgres-pgadmin-network:
+    driver: bridge
+
+# https://renatogroffe.medium.com/postgresql-pgadmin-4-docker-compose-montando-rapidamente-um-ambiente-para-uso-55a2ab230b89
